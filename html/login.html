@@ -48,23 +48,8 @@
 
     </header>
 
-    <main class="container my-2 d-flex justify-content-center align-items-center">
-     
-        <form action="#" id="formulario_registro" class=" text-center bg-dark bg-opacity-75 border border-dark rounded-4  text-white p-2" style="width: 70%;"  >
-              <div class="">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input class="form-control form-control-sm" type="text" id="nombre" required>
-           
-                <label for="apellido" class="form-label">Apellido</label>
-                <input class="form-control form-control-sm" type="text" id="apellido" required>
-            
-                <label for="dni" class="form-label">DNI</label>
-                <input class="form-control form-control-sm" type="text" id="dni" required>
-             
-                <label for="foto" class="form-label">Foto</label>
-                <input class="form-control form-control-sm" type="file" id="foto">
-
-              </div>
+    <main class="container my-5 d-flex justify-content-center align-items-center ">
+        <form action="index.html" id="formulario_registro" class=" text-center bg-dark bg-opacity-75 border border-dark rounded-4  text-white p-2" style="width: 70%;"  >
               <div class="">
                 <label for="formFile" class="form-label">Correo electronico</label>
                 <input class="form-control form-control-sm" type="text" id="formFile" required>
@@ -75,16 +60,26 @@
                 <label for="password" class="form-label">Contraseña</label>
                 <input class="form-control form-control-sm" type="password" id="password" required>
                 <label for="password" id="passwordHelpBlock" class="form-text text-white-50"> La contraseña debe tener de 8 a 12 caracteres</label>
-                <form action="login.html" class="form-control ">
-                  <button type="submit" class="btn btn-light bg-opacity-50  form-control mt-3" >Registrarse</button>
+                
+              <div class="d-flex justify-content-center align-items-center mt-1">
+                <form action="index.html" class="form-control">
+                  <button type="submit" class="btn btn-light me-3" >Inicio Sesión</button>
                 </form>
+                <form action="registro.html" class=" ">
+                  <button type="submit" class="btn btn-light" >Registro</button>
+                </form>
+
               </div> 
         </form>
       
 
 
     </main>
-    <footer class="text-center py-1  bg-body-tertiary bg-opacity-25 ">
+      
+
+
+    </main>
+    <footer class="text-center py-1  bg-body-tertiary bg-opacity-25 fixed-bottom">
       <p>&#169; Derechos Reservados</p>
   </footer>
 
