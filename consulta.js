@@ -9,7 +9,7 @@ const vehiculos = [
         titular:'Canepa Maria Jose' ,
         dni: '37683989',
         patente: 'AC123BC',
-        estado:'POSEA DEUDA'
+        estado:'POSEE DEUDA'
     },
     {
         titular:'Augusto Chaves',
@@ -36,8 +36,10 @@ const limpiar= document.getElementById("limpiar");
             return
         }
         
-        vehiculoLista.innerText=(`
-        Vehiculo con dominio: ${asd.patente} Estado: ${asd.estado}`);
+        vehiculoLista.innerHTML=(`
+        <p>Vehiculo con dominio: <strong>${asd.patente}</strong> Estado: 
+        <strong>${asd.estado}</strong></p>  
+        `);
     }
 
 
