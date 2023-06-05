@@ -2,7 +2,7 @@ const formulario= document.getElementById('incioSesion');
 const  cuenta={
     email:'augustochavesfiore@gmail.com',
     user:'augusto',
-    password:'contraseniaprueba'
+    password:'password'
 
 }
 
