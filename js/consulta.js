@@ -36,15 +36,11 @@ const limpiar= document.getElementById("limpiar");
             return
         }
         
-        console.log(asd);
-        vehiculoLista.innerText=(`Titular:${asd.titular} DNI:${asd.dni}
-        Patente:${asd.patente} Estado:${asd.estado}`)
+        vehiculoLista.innerText=(`
+        Vehiculo con dominio: ${asd.patente} Estado: ${asd.estado}`);
     }
 
 
     limpiar.addEventListener("click",()=>{
         vehiculoLista.innerText = '';
     })
-
-
-
