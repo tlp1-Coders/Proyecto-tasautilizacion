@@ -34,7 +34,7 @@ btnRegistro.addEventListener('click',(e)=>{
     
     
     
-
+    console.log(cuentas)
 
 
   

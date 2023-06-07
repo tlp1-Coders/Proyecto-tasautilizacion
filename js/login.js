@@ -1,29 +1,28 @@
 const formulario= document.getElementById('incioSesion');
-import cuentas from "./registro";
-// const  cuenta=[
-//     {
-//         email:'augustochavesfiore@gmail.com',
-//         user:'augusto',
-//         password:'password'
-//     },
-//     {
-//         email:'garciafabianemmanuel@gmail.com',
-//         user:'fabian',
-//         password:'password'
-//     },
-//     {
-//         email:'canepamariajose95@gmail.com',
-//         user:'majo',
-//         password:'password'
-//     },
+const  cuenta=[
+    {
+        email:'augustochavesfiore@gmail.com',
+        user:'augusto',
+        password:'password'
+    },
+    {
+        email:'garciafabianemmanuel@gmail.com',
+        user:'fabian',
+        password:'password'
+    },
+    {
+        email:'canepamariajose95@gmail.com',
+        user:'majo',
+        password:'password'
+    },
     
 
-// ]
-const cuenta=cuentas;
-const $form = document.querySelector('form')
+];
+
+const $form = document.querySelector('form');
 
 
-formulario.addEventListener('click',(e)=>{
+formulario.addEventListener('click',()=>{
     
     let email=document.getElementById('email').value;
     let user=document.getElementById('user').value;
@@ -37,8 +36,3 @@ formulario.addEventListener('click',(e)=>{
     $form.setAttribute('action','consulta.html')
         
 })
-cuenta.forEach((e)=>console.log(e))
-
-console.log(email.value);
-console.log(user.value);
-console.log(password.value);
