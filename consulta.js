@@ -38,7 +38,8 @@ const limpiar= document.getElementById("limpiar");
         
         vehiculoLista.innerHTML=(`
         <p>Vehiculo con dominio: <strong>${asd.patente}</strong> Estado: 
-        <strong>${asd.estado}</strong></p>  
+        <strong>${asd.estado}</strong></p> 
+        <a href="#"><input type="button" value="Pagar" class="btn btn-light mt-3"></a> 
         `);
     }
 
