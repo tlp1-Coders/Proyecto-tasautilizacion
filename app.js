@@ -3,6 +3,7 @@ const morgan=require('morgan');
 const cors=require('cors');
 const helmet=require('helmet');
 const dotenv=require('dotenv');
+const{sequelize}=require('./database/db');
 
 const app=express();
 //variables de entorno
@@ -20,6 +21,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 // Configuración de motor de plantillas EJS
 app.set('view engine', 'ejs');
+
+// Conexión a base de datos
+sequelize.authenticate()
+    .then(() => console.log('Conexión a base de datos exitosa'))
+    .catch((error) => console.log('Error al conectar a base de datos', error));
 
 
 //routes
