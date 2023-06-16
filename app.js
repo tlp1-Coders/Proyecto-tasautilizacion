@@ -8,7 +8,7 @@ const{sequelize}=require('./database/db');
 const app=express();
 //variables de entorno
 dotenv.config({path:'./.env'});
-const port=process.env.PORT;
+const port=process.env.PORT|| 5000;
 
 // Middlewares
 app.use(cors());
@@ -31,4 +31,4 @@ sequelize.authenticate()
 //routes
 app.use('/',require('./routes/app.routes'));
 
-app.listen(port || 5000,()=>{console.log(`servidor corriendo en http://localhost:${port}`)});
+app.listen(port,()=>{console.log(`servidor corriendo en http://localhost:${port}`)});
