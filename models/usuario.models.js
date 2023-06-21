@@ -30,4 +30,16 @@ const users=sequelize.define('users',{
     type:DataTypes.BLOB,
     allowNull: false
   },
+},{
+    // Other model options go here
+    createdAt: true,
+    updatedAt: true,
+    deletedAt: true,
+    tableName: 'users'
 });
+
+// Crear tabla si no existe
+users.sync();
+
+module.exports = users;
+

@@ -1,15 +1,18 @@
 
-//vistas
-exports.vistaGet=(req,res)=>{
-    res.send('HOLA GET');
+// vistas
+exports.vistaPrincipal=(req,res)=>{
+    res.render('index');
 };
-exports.vistaPut=(req,res)=>{
-    res.send('HOLA PUT');
+exports.vistaConsulta=(req,res)=>{
+    res.render('consultas');
 };
-exports.vistaPost=(req,res)=>{
-    res.send('HOLA POST');
+exports.vistaPagos=(req,res)=>{
+    res.render('pagos');
 };
-exports.vistaDelete=(req,res)=>{
-    res.send('HOLA DELETE');
+exports.vistaLogin=(req,res)=>{
+    res.render('login');
+};
+exports.vistaRegistro=(req,res)=>{
+    res.render('registro');
 };
 
