@@ -59,3 +59,6 @@ exports.newUser=async(req,res)=>{
     }
 };
 
+exports.recuperar=async(req,res)=>{
+
+};

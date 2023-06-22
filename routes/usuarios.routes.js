@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const ctrl=require('../controllers/usuarios.js');
+const ctrlusuarios=require('../controllers/usuarios.js');
 
 // ==========================================
 // Rutas para renderizar las vistas de usuarios
@@ -30,7 +30,9 @@ const ctrl=require('../controllers/usuarios.js');
 // router.put('/api/usuario/:id', actualizarUsuario)
 
 // Nuevo usuario
-router.post('/api/usuario/', ctrl.newUser);
+router.post('/api/usuario/', ctrlusuarios.newUser);
+//login
+router.post('/api/usuario/', ctrlusuarios.login)
 
 // Eliminar Usuario
 // router.delete('/api/usuario/:id', eliminarUsuario);
