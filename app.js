@@ -31,6 +31,7 @@ sequelize.authenticate()
 
 
 //routes
-app.use('/',require('./routes/app.routes'));
+app.use(require('./routes/app.routes'));
+app.use(require('./routes/usuarios.routes'));
 
 app.listen(port,()=>{console.log(`servidor corriendo en http://localhost:${port}`)});

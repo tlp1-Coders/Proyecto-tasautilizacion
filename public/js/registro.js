@@ -1,40 +1,71 @@
 const btnRegistro=document.getElementById('btn-registro');
-const cuentas=[];
+const formulario=document.getElementById('formulario_registro');
 
-btnRegistro.addEventListener('click',(e)=>{
+formulario.addEventListener('submit',async(e)=>{
         e.preventDefault();
 
-        const nombre=document.getElementById('nombre'),
-        apellido=document.getElementById('apellido'),
-        dni=document.getElementById('dni'),
-        email=document.getElementById('email'),
-        user=document.getElementById('user'),
-        password=document.getElementById('password'),
-        pin=document.getElementById('pin');
+        const nombreApellido=document.getElementById('nombre').value,
+        dni=document.getElementById('dni').value,
+        email=document.getElementById('email').value,
+        usuario=document.getElementById('usuario').value,
+        password=document.getElementById('password').value,
+        pin=document.getElementById('pin').value,
+        foto=document.getElementById('foto').value;
 
-
-        if ( nombre.value === '' || apellido.value === '' || dni.value === '' || email.value === '' || user.value === '' || password.value === '' || pin.value === '') {
-            return alert('Por favor, ingrese los datos');
-        }
-
-        //agregar cuenta
-        cuentas.push(
-            {
-            nombre:nombre.value,
-            apellido:apellido.value,
-            dni:dni.value,
-            email:email.value,
-            user:user.value,
-            password:password.value,
-            pin:pin.value,
+        console.log(usuario);
+        
+        if ( nombreApellido === '' || dni === '' || email === '' || usuario === '' || password === '' || password.length>12 || password.length<8|| pin === ''|| pin.length!==4 ) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Complete todos los campos correctamente',
+            });
+            return;
+        };
+       
+        const response = await fetch('http://localhost:4000/api/usuario',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                nombreApellido,
+                dni,
+                email,
+                usuario,
+                password,
+                pin,
+                foto
+            }),
         });
-        console.log(cuentas)
-        cuentas.forEach((e)=>console.log(e))
-    })
+        
+        const respToJson = await response.json();
+        
+        if(response.status !== 201 && response.status !== 200) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: respToJson.message,
+            });
+            return;
+        }
     
+        Swal.fire({
+            icon: 'success',
+            title: 'Registro exitoso',
+            text: respToJson.message,
+        });
     
+        console.log(respToJson.message);
     
-    console.log(cuentas)
+        formulario.reset();
+    
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 2000);
+    
 
+
+    });
 
   

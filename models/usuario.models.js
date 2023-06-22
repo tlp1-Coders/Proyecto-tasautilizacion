@@ -2,7 +2,7 @@ const { sequelize, DataTypes } = require('../database/db');
 
 
 const users=sequelize.define('users',{
-  nombre_apellido:{
+  nombreApellido:{
     type:DataTypes.STRING,
     allowNull: false
   },
@@ -28,8 +28,22 @@ const users=sequelize.define('users',{
   },
   foto:{
     type:DataTypes.BLOB,
-    allowNull: false
+    allowNull: true
   },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+  },
+  deletedAt: {
+    type: DataTypes.DATE,
+    allowNull: true
+}
 },{
     // Other model options go here
     createdAt: true,
