@@ -32,7 +32,7 @@ const ctrlusuarios=require('../controllers/usuarios.js');
 // Nuevo usuario
 router.post('/api/usuario/', ctrlusuarios.newUser);
 //login
-router.post('/api/usuario/', ctrlusuarios.login)
+router.post('/api/login/', ctrlusuarios.login)
 
 // Eliminar Usuario
 // router.delete('/api/usuario/:id', eliminarUsuario);

@@ -1,6 +1,6 @@
 const users=require('../models/usuario.models');
 const bcrypt = require('bcrypt');
-
+const { Op } = require("sequelize");    
 exports.newUser=async(req,res)=>{
     const{ nombreApellido,
         dni,
@@ -59,6 +59,50 @@ exports.newUser=async(req,res)=>{
     }
 };
 
-exports.recuperar=async(req,res)=>{
+exports.login=async(req,res)=>{
+    const {usuario, password } = req.body;
 
-};
+    try {
+        // Verificar si el email existe
+        const existeUsuario = await users.findOne({
+            where:{
+                    [Op.or]:[
+                        {usuario},
+                        {email:usuario}
+                    ]
+             }
+        });
+        
+        if(!existeUsuario) {
+            return res.status(400).json({
+                message: 'El Usuario no existe',
+            });
+        }
+
+        // Verificar si el usuario está activo
+        // if(!existeUsuario.estado) {
+        //     return res.status(400).json({
+        //         message: 'El usuario no está activo',
+        //     });
+        // }
+
+        // Verificar la contraseña
+        const passwordValido = bcrypt.compareSync(password, existeUsuario.password);
+
+        if(!passwordValido) {
+            return res.status(400).json({
+                message: 'La contraseña no es válida',
+            });
+        }
+        res.json({
+            message: 'Login correcto',
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: 'Error al iniciar sesión',
+        });
+    }
+}
+
