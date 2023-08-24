@@ -5,6 +5,9 @@ const sequelize = new Sequelize('tasa_utilizacion', 'root', '', {
     dialect: 'mysql' 
 });
 
+
+
+
 module.exports = {
     sequelize,
     DataTypes,

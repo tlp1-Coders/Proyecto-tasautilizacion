@@ -1,33 +1,28 @@
 const { sequelize, DataTypes } = require("../database/db");
 
 
-const consulta=sequelize.define('consulta',{
-    Dominio:{
+const deudas=sequelize.define('deudas',{
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    id_de_Vehículo:{
         type:DataTypes.STRING,
         allowNull:false
     },
-    tipo_vehiculo:{
-        type:DataTypes.STRING,
+    monto_deuda:{
+        type:DataTypes.FLOAT,
         allowNull:false
     },
-    deuda:{
+    Estado_Deuda:{
         type:DataTypes.BOOLEAN,
         allowNull:false
-    },
-    año:{
-        type:DataTypes.DATE,
-        allowNull:false
-    },
-    periodo_deuda:{
-        type:DataTypes.INTEGER,
-        allowNull:false
-    },
-    titular:{
-        type:DataTypes.INTEGER,
-        allowNull:false
-    },
+    }
 })
 
-consulta.sync();
+deudas.sync({ force: false }).then(() => {
+    console.log('Tabla de deudas creada');
+});
 
-module.exports= consulta
+module.exports= deudas

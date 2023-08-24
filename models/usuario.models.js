@@ -2,6 +2,11 @@ const { sequelize, DataTypes } = require('../database/db');
 
 
 const users=sequelize.define('users',{
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+},
   nombreApellido:{
     type:DataTypes.STRING,
     allowNull: false
@@ -53,7 +58,12 @@ const users=sequelize.define('users',{
 });
 
 // Crear tabla si no existe
-users.sync();
+users.sync({force:false}).then(() => {
+  console.log('Tabla de usuarios creada');
+});
 
+
+
+console.log('users.sync');
 module.exports = users;
 
