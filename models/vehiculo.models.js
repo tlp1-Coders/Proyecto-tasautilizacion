@@ -1,6 +1,5 @@
 const { sequelize, DataTypes } = require("../database/db");
 
-const users = require('./usuario.models');
 
 const Vehiculos = sequelize.define("vehiculos", {
   id: {
@@ -12,18 +11,38 @@ const Vehiculos = sequelize.define("vehiculos", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  Tipo_de_Vehículo: {
+  Tipo_de_Vehiculo: {
     type: DataTypes.STRING,
     allowNull: false,
   },
   Dominio: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   detalles: {
     type: DataTypes.STRING,
     allowNull: false,
-  }
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+  },
+  deletedAt: {
+    type: DataTypes.DATE,
+    allowNull: true
+}
+},{
+  // Other model options go here
+  createdAt: true,
+  updatedAt: true,
+  deletedAt: false,
+  tableName: 'vehiculos'
 });
 
 Vehiculos.sync({ force: false }).then(() => {
@@ -34,5 +53,4 @@ Vehiculos.sync({ force: false }).then(() => {
 // users.hasMany(Vehiculos);
 // Vehiculos.belongsTo(users);
 
-console.log('Vehiculos.sync');
 module.exports = Vehiculos;

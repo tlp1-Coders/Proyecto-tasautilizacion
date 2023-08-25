@@ -16,7 +16,7 @@ const users=sequelize.define('users',{
     allowNull: false
   },
   dni:{
-    type:DataTypes.NUMBER,
+    type:DataTypes.INTEGER,
     allowNull: false
   },
   email:{
@@ -28,7 +28,7 @@ const users=sequelize.define('users',{
     allowNull: false
   },
   pin:{
-    type:DataTypes.NUMBER,
+    type:DataTypes.INTEGER,
     allowNull: false
   },
   foto:{
@@ -61,9 +61,5 @@ const users=sequelize.define('users',{
 users.sync({force:false}).then(() => {
   console.log('Tabla de usuarios creada');
 });
-
-
-
-console.log('users.sync');
 module.exports = users;
 
