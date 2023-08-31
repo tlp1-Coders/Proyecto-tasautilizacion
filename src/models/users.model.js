@@ -5,7 +5,7 @@ export const Users = sequelize.define('users', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     nombreApellido: {
         type: DataTypes.STRING,
@@ -58,7 +58,6 @@ export const Users = sequelize.define('users', {
 });
 
 
-Users.sync().then(() => {
+Users.sync({ remplace: true }).then(() => {
     console.log('Users table created');
 });
-

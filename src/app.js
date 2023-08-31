@@ -15,9 +15,13 @@ app.use(morgan('dev'));
 
 
 app.use('/api',usersRouter);
+const bbdd =async()=>{
+    
+    await connectDB();
+    relations();
+}
+bbdd();
 
-connectDB();
-relations();
 app.listen(port, () => {
     console.log(`Server on http://localhost:${port}`);
 })
