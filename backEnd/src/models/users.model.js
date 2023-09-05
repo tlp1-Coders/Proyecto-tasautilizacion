@@ -58,6 +58,6 @@ export const Users = sequelize.define('users', {
 });
 
 
-Users.sync({ remplace: true }).then(() => {
+Users.sync({ remplace: false }).then(() => {
     console.log('Users table created');
 });

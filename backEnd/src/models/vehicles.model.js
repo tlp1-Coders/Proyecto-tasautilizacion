@@ -53,7 +53,7 @@ export const Vehicles = sequelize.define("vehicles",
   }
 );
 
-Vehicles.sync({ remplace: true }).then(() => {
+Vehicles.sync({ remplace: false }).then(() => {
   console.log("Vehicles table created");
 });
 
