@@ -45,6 +45,3 @@ export const Debts = sequelize.define('debts', {
         tableName: 'debts'
 });
 
-Debts.sync({ force: false }).then(() => {
-    console.log('debts table created');
-})

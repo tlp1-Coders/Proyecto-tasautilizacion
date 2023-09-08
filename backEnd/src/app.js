@@ -18,14 +18,11 @@ app.use(morgan('dev'));
 app.use(cors());
 
 
-app.use('/api',usersRouter);
-app.use('/api', vehiclesRouter);
-const bbdd =async()=>{
-    
-    await connectDB();
-    relations();
-}
-bbdd();
+app.use('/auth',usersRouter);
+app.use('/vehicles', vehiclesRouter);
+connectDB();
+relations();
+
 
 app.listen(port, () => {
     console.log(`Server on http://localhost:${port}`);
