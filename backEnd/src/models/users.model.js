@@ -37,26 +37,16 @@ export const Users = sequelize.define('users', {
         type: DataTypes.BLOB,
         allowNull: true
     },
-    createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
-    },
-    updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
-    },
-    deletedAt: {
-        type: DataTypes.DATE,
-        allowNull: true
-    }
+
 }, {
-    createdAt: true,
-    updatedAt: true,
-    deletedAt: true,
-    tableName: 'users'
-});
+    timestamps: true
+}
+    , {
+        createdAt: true,
+        updatedAt: true,
+        deletedAt: true,
+        tableName: 'users'
+    });
 
 
 

@@ -23,20 +23,10 @@ export const Debts = sequelize.define('debts', {
         type: DataTypes.BOOLEAN,
         allowNull: false
       },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
-      },
-      deletedAt: {
-        type: DataTypes.DATE,
-        allowNull: true
-      }
+
+    },
+    {
+      timestamps: true
     },
       {
         createdAt: true,

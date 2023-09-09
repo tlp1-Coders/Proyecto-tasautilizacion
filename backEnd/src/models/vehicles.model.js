@@ -29,21 +29,10 @@ export const Vehicles = sequelize.define("vehicles",
     detalles: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
-    },
-    deletedAt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
+    }
+  },
+  {
+    timestamps: true,
   },
   {
     // Other model options go here
@@ -59,12 +48,12 @@ export const Vehicles = sequelize.define("vehicles",
 export const getOneVehicleForUser = async (dni) => {
   try {
     const existingVehicle = await Vehicles.findOne({
-        where: {
-            dniUser: dni
-        }
+      where: {
+        dniUser: dni
+      }
     })
-    if (!existingVehicle){
-        return false;
+    if (!existingVehicle) {
+      return false;
     }
     return existingVehicle;
   } catch (error) {
@@ -86,33 +75,33 @@ export const updateVehicleForUser = async (id) => {
     return false;
   }
 };
-export const getVehicleForConsult= async  (valor)=>{
+export const getVehicleForConsult = async (valor) => {
   try {
     const vehicle = await Vehicles.findOne({
-        where: {
-            [Op.or]: [
-            {dominio:valor},
-            {dniUser:valor}
+      where: {
+        [Op.or]: [
+          { dominio: valor },
+          { dniUser: valor }
         ]
+      },
+      include: [
+        {
+          model: Users,
+          attributes: ['nombreApellido', 'usuario', 'dni', 'email'],
         },
-        include:[
-            {
-                model: Users,
-                attributes: ['nombreApellido', 'usuario', 'dni', 'email'],   
-            },
-            {
-                model: Debts,
-                attributes: ['periodoDeuda', 'montoDeuda', 'estadoDeuda'],
-            }
-        ]
+        {
+          model: Debts,
+          attributes: ['periodoDeuda', 'montoDeuda', 'estadoDeuda'],
+        }
+      ]
     });
     if (!vehicle) {
-        return false;
+      return false;
     }
     return vehicle;
   } catch (error) {
     console.log(error);
     return false;
-  }  
+  }
 }
 
