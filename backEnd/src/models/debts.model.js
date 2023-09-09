@@ -11,8 +11,12 @@ export const Debts = sequelize.define('debts', {
         type: DataTypes.INTEGER,
         allowNull: false
       },
+      year: {
+        type: DataTypes.INTEGER,
+        allowNull: false  
+      },
       periodoDeuda: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
       },
       montoDeuda: {

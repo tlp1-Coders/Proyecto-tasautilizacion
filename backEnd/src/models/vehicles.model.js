@@ -1,5 +1,5 @@
 import { sequelize } from "../db.js";
-import { DataTypes } from "sequelize";
+import { DataTypes, Op } from "sequelize";
 import { Users } from './users.model.js';
 import { Debts } from './debts.model.js';
 
@@ -61,21 +61,23 @@ export const getOneVehicleForUser = async (dni) => {
     return false;
   }
 };
-export const updateVehicleForUser = async (id) => {
+export const updateVehicleForUser = async (existingVehicle,id) => {
+  console.log();
   try {
-    const updatedVehicle = await Vehicles.update({
+    const newdate= await existingVehicle.update({
       idUser: id
     });
-    if (!updatedVehicle) {
+    if (!newdate) {
       return false;
     }
-    return updatedVehicle;
+    return true;
+
   } catch (error) {
     console.log(error);
     return false;
   }
 };
-export const getVehicleForConsult = async (valor) => {
+export const getVehicleForConsult = async ({valor}) => {
   try {
     const vehicle = await Vehicles.findOne({
       where: {
@@ -84,6 +86,7 @@ export const getVehicleForConsult = async (valor) => {
           { dniUser: valor }
         ]
       },
+      attributes: ['id', 'tipoVehiculo', 'dominio', 'detalles'],
       include: [
         {
           model: Users,
@@ -91,7 +94,7 @@ export const getVehicleForConsult = async (valor) => {
         },
         {
           model: Debts,
-          attributes: ['periodoDeuda', 'montoDeuda', 'estadoDeuda'],
+          attributes: ['id','periodoDeuda','year', 'montoDeuda', 'estadoDeuda'],
         }
       ]
     });
@@ -102,6 +105,6 @@ export const getVehicleForConsult = async (valor) => {
   } catch (error) {
     console.log(error);
     return false;
-  }
-}
+  };
+};
 

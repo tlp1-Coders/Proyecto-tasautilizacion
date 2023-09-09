@@ -6,6 +6,7 @@ import { connectDB } from './db.js';
 import { relations } from './models/relations.js';
 import usersRouter from './routes/users.routes.js';
 import vehiclesRouter from './routes/vehicles.routes.js';
+import { payMentRoutes } from './routes/payment.routes.js';
 
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(cors());
 
 app.use('/auth',usersRouter);
 app.use('/vehicles', vehiclesRouter);
+// app.use('/mp',payMentRoutes)
 connectDB();
 relations();
 

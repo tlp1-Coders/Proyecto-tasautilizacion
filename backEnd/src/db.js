@@ -11,7 +11,7 @@ export const sequelize= new Sequelize(
 
 export const connectDB= async()=>{
     try {
-        await sequelize.sync()
+        await sequelize.sync({force: false});
         console.log(`DB CONNECTED`);
     } catch (error) {
         console.log('Error Conecting',error);
