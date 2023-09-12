@@ -36,7 +36,7 @@ export const loginUser = async (req, res) => {
 try {
     const existingUser= await getUserLogin(req.body.usuario, req.body.password);
     if (!existingUser){
-        return res.status(400).json({
+        return res.status(401).json({
             message: 'usuario o contraseña incorrecta',
         });
     }
@@ -47,6 +47,6 @@ try {
     console.log(error);
     return res.status(500).json({
         message: 'No se pudo loguear el usuario'
-    }, error);
+    });
 }
 };
