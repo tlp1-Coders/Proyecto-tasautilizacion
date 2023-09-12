@@ -67,6 +67,18 @@ export const findOneUser = async (dni) => {
         return false;
     }
 };
+export const findOneUserbyId = async (id) => {
+    try {
+        const existingUser = await Users.findByPk(id);
+        if (!existingUser) {
+            return false;
+        }
+        return existingUser
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
 export const getUserLogin = async (user, password) => {
     try {
         const existingUser = await Users.findOne({

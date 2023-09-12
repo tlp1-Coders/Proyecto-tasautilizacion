@@ -1,5 +1,7 @@
-import { createNewUser, findOneUser, getUserLogin } from "../models/users.model.js";
+import { createJWT, verifyJWT } from "../helpers/jwt.js";
+import { createNewUser, findOneUser, findOneUserbyId, getUserLogin } from "../models/users.model.js";
 import { vincular } from "./vincular.js";
+import jwt from 'jsonwebtoken';
 
 export const newUser = async (req, res) => {
     try {
@@ -15,6 +17,7 @@ export const newUser = async (req, res) => {
                 message: "No se pudo crear el usuario",
             });
         }
+        const token = await createJWT({id: user.id});
         if(! await vincular(req.body.dni, user.id)){
             return res.status(400).json({
                 message: "No se pudo vincular el usuario",
@@ -22,6 +25,7 @@ export const newUser = async (req, res) => {
         };
         return res.status(201).json({
             message: "Usuario creado",
+            token
         });
 
 
@@ -40,8 +44,11 @@ try {
             message: 'usuario o contraseña incorrecta',
         });
     }
+    console.log(existingUser.id);
+    const token = await createJWT({id: existingUser.id});
     return res.status(200).json({
         message: 'Usuario logueado',
+        token:token.token
     });
 } catch (error) {
     console.log(error);
@@ -50,3 +57,18 @@ try {
     });
 }
 };
+
+export const getUserInfoByToken = async (req, res, next) => {
+    const token = req.headers.authorization;
+    if (!token) {
+        return res.sendStatus(404);
+    }
+    const { id } = await verifyJWT(token);
+    const user = await findOneUserbyId(id);
+    if (!user) {
+        return res.status(404).json({
+            message: 'Usuario no encontrado'
+        });
+    }
+    next();
+}
