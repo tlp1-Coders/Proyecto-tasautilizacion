@@ -114,4 +114,24 @@ export const createNewUser = async (user) => {
         return false;
     }
 };
+export const updateUser = async (id, password) => {
+    console.log(id, password);
+    try {
+        const hashedPassword = await hash(password, 10);
+
+        const updatedUser = await Users.update({ password: hashedPassword },
+            {
+                where: {
+                    id
+                }
+            });
+        if (!updatedUser) {
+            return false;
+        }
+        return updatedUser;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
 
