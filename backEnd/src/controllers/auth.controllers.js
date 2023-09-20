@@ -59,10 +59,13 @@ export const loginUser = async (req, res) => {
 };
 
 export const getUserInfoByToken = async (req, res, next) => {
-    const token = req.headers.authorization;
+    try {
+        const token = req.headers.authorization;
     if (!token) {
-        return res.sendStatus(404);
-    }
+         return res.status(404).json({
+             message: 'No hay token'
+         })
+        }
     const { id } = await verifyJWT(token);
     const user = await findOneUserbyId(id);
     if (!user) {
@@ -71,6 +74,14 @@ export const getUserInfoByToken = async (req, res, next) => {
         });
     }
     next();
+        
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: 'No se pudo obtener el usuario'
+        });
+        
+    }
 }
 
 export const forgotPassword = async (req, res) => {
