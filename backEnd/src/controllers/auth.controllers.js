@@ -61,26 +61,29 @@ export const loginUser = async (req, res) => {
 export const getUserInfoByToken = async (req, res, next) => {
     try {
         const token = req.headers.authorization;
-    if (!token) {
-         return res.status(404).json({
-             message: 'No hay token'
-         })
+        if (!token) {
+            return res.status(404).json({
+                message: 'No hay token'
+            })
+        }else{
+            
+            const { id } = await verifyJWT(token);
+            const user = await findOneUserbyId(id);
+            if (!user) {
+                return res.status(404).json({
+                    message: 'Usuario no encontrado'
+                });
+            }
+            req.user = user
+            next();
         }
-    const { id } = await verifyJWT(token);
-    const user = await findOneUserbyId(id);
-    if (!user) {
-        return res.status(404).json({
-            message: 'Usuario no encontrado'
-        });
-    }
-    next();
-        
+
     } catch (error) {
         console.log(error);
         return res.status(500).json({
             message: 'No se pudo obtener el usuario'
         });
-        
+
     }
 }
 
