@@ -35,8 +35,8 @@ form.addEventListener('submit', async (e) => {
         }else{
             console.log(data);
             Swal.fire({
-                icon: 'success',
-                title: 'Exito',
+                icon: 'error',
+                title: 'Error',
                 text: data.message,
                 showConfirmButton: false,
                 timer: 1500

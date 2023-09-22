@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/navbar.css';
+import { Link } from 'react-router-dom';
 
 export default function NavBar() {
   return (
@@ -7,10 +8,10 @@ export default function NavBar() {
       <header className="">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container">
-            <a className="navbar-brand" href="/">
+            <Link className="navbar-brand" to="/">
               <img src="../../public/muni2.jpeg" alt="" className="logo-nav" />
               Municipalidad Formosa
-            </a>
+            </Link>
             <button
               className="navbar-toggler"
               type="button"
@@ -25,43 +26,43 @@ export default function NavBar() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/">
+                  <Link className="nav-link active" aria-current="page" to="/">
                     Inicio
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link active" href="/consultas">
+                  <Link className="nav-link active" to="/consultas">
                     Consulta
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link active" href="/pagos">
+                  <Link className="nav-link active" to="/pagos">
                     Pagar
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item dropdown">
-                  <a
+                  <Link
                     className="nav-link dropdown-toggle active"
-                    href="#"
+                    to="#"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     Ingresar
-                  </a>
+                  </Link>
                   <ul className="dropdown-menu">
                     <li>
-                      <a className="dropdown-item" href="/ingresar">
+                      <Link className="dropdown-item" to="/ingresar">
                         Iniciar Sesión
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/registro">
+                      <Link className="dropdown-item" to="/registro">
                         Registro
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>
@@ -70,7 +71,6 @@ export default function NavBar() {
           </div>
         </nav>
       </header>
-
     </>
-  )
+  );
 }

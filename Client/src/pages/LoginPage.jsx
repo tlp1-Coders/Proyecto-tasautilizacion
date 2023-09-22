@@ -1,12 +1,47 @@
 import React from 'react'
-import NavBar from '../components/Navbar.jsx'
+import { useForm } from 'react-hook-form';
 
-export const PageLogin = () => {
+export const LoginPage = () => {
+    const {register, handleSubmit} = useForm();
+    const onSubmit =  async(valor) => {
+            const response = await fetch('http://localhost:4000/auth/login',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(valor)
+            })
+            const data = await response.json();
+            if (response.status !== 200) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+            else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: data.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                window.localStorage.setItem('token', data.token);
+                window.location.href = '/consultas';
+            }
+            
+            // data.errors.map(e => console.log(e.msg));
+            console.log(data);
+            console.log(data.token);
+    }
     return (
         <>
-            <NavBar />
             <main className="container text-center d-flex flex-column justify-content-center align-items-center mt-5">
                 <form 
+                    onSubmit={handleSubmit(onSubmit)}
                     id="form"
                     className="row bg-body-tertiary g-3 border rounded mt-1 p-5 h-50 w-50 needs-validation shadow"
                 >
@@ -21,6 +56,7 @@ export const PageLogin = () => {
                             name="usuario"
                             id="usuario"
                             required=""
+                            {...register('usuario')}
                         />
                     </div>
                     <div className="col-12">
@@ -33,6 +69,7 @@ export const PageLogin = () => {
                             name="password"
                             id="password"
                             required=""
+                            {...register('password')}
                         />
                     </div>
                     <div className="col-6">
