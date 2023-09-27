@@ -60,9 +60,9 @@ export const ConsultPage = () => {
                         Buscar
                     </button>
                 </form>
-                <section className="container d-flex flex-column justify-content-center align-items-center mt-5 border rounded p-5 shadow ">
-                   {vehicle?<VehiclesConsult vehicle={vehicle} />:''}
-                </section>
+                
+                {vehicle?<VehiclesConsult vehicle={vehicle} />:''}
+                
 
             </main>
         </>
