@@ -109,7 +109,7 @@ export const forgotPassword = async (req, res) => {
         });
     };
     return res.status(200).json({
-        message: "Email enviado",
+        message: "Email enviado, revise su bandeja de entrada",
     });
 };
 
@@ -117,6 +117,7 @@ export const resetForgotPassword = async (req, res) => {
     try {
         const { id } = await verifyJWT(req.params.token);
         const updatePasswod = await updateUser(id, req.body.password);
+        
         if (!updatePasswod) {
             return res.status(400).json({
                 message: "No se pudo actualizar la contraseña",

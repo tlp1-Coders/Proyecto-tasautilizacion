@@ -8,7 +8,7 @@ export const resendEmail = async (email, token) => {
         to: email,
         subject: 'Hello World',
     //    html: ` <p>${token.token}</p>`
-        html: ` <p>Click <a href="${process.env.FRONTEND_URL}/auth/resetPassword/${token.token}">here</a> to reset your password</p>`
+        html: ` <p>Click <a href="${process.env.FRONTEND_URL}updatePassword?token=${token.token}">here</a> to reset your password</p>`
     })
     if (!resend) {
         return false;

@@ -4,7 +4,7 @@ import cors from 'cors';
 import 'dotenv/config';
 import { connectDB } from './db.js';
 import { relations } from './models/relations.js';
-import usersRouter from './routes/users.routes.js';
+import authRouter from './routes/auth.routes.js';
 import vehiclesRouter from './routes/vehicles.routes.js';
 import { payMentRoutes } from './routes/payment.routes.js';
 
@@ -19,7 +19,7 @@ app.use(morgan('dev'));
 app.use(cors());
 
 
-app.use('/auth',usersRouter);
+app.use('/auth', authRouter);
 app.use('/vehicles', vehiclesRouter);
 // app.use('/mp',payMentRoutes)
 connectDB();

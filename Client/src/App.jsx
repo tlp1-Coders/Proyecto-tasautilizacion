@@ -5,6 +5,9 @@ import { LoginPage } from './pages/LoginPage.jsx';
 import { RegisterPage } from './pages/RegisterPage.jsx';
 import { PaymentPage } from './pages/PaymentPage.jsx';
 import NavBar from './components/Navbar.jsx';
+import { PasswordPage } from './pages/PasswordPage.jsx';
+import { UpdatePasswordPage } from './pages/UpdatePasswordPage.jsx';
+import { Footer } from './components/Footer.jsx';
 
 function App() {
   return (
@@ -16,7 +19,10 @@ function App() {
         <Route path='/ingresar' element={<LoginPage />} />
         <Route path='/registro' element={<RegisterPage />} />
         <Route path='/pagos' element={<PaymentPage />} />
+        <Route path='/forgotPassword' element={<PasswordPage />} />
+        <Route path='/updatePassword' element={<UpdatePasswordPage />} />
       </Routes>
+      <Footer />
     </>
   )
 
