@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { VehiclesConsult } from '../components/VehiclesConsult';
 export const ConsultPage = () => {
     const { register, handleSubmit } = useForm();
+    const [vehicle, setVehicle] = useState(null);
     const onSubmit = async (valor) => {
         const authorization = window.localStorage.getItem('token');
         const response = await fetch('http://localhost:4000/vehicles', {
@@ -31,7 +33,7 @@ export const ConsultPage = () => {
                 timer: 500
             });
         }
-        console.log(data);
+        setVehicle(data.vehicle);
     }
     return (
         <>
@@ -58,10 +60,8 @@ export const ConsultPage = () => {
                         Buscar
                     </button>
                 </form>
-                <section className="container d-flex flex-column justify-content-center align-items-center ">
-                    <ol className="" id="vehiculoLista" >
-                    </ol>
-
+                <section className="container d-flex flex-column justify-content-center align-items-center mt-5 border rounded p-5 shadow ">
+                   {vehicle?<VehiclesConsult vehicle={vehicle} />:''}
                 </section>
 
             </main>

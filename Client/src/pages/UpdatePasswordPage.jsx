@@ -7,7 +7,6 @@ export const UpdatePasswordPage = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const token = searchParams.get('token');
-    console.log(token);
     const onsubmit = async (valor) => {
         const response = await fetch(`http://localhost:4000/auth/resetPassword/${token}`, {
             method: 'PUT',
