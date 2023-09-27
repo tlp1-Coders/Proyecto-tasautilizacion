@@ -39,11 +39,11 @@ export const LoginPage = () => {
     }
     return (
         <>
-        <main className="container text-center d-flex flex-column justify-content-center align-items-center mt-5">
+        <main className="container text-center d-flex flex-column justify-content-center align-items-center my-5">
             <form 
                 onSubmit={handleSubmit(onSubmit)}
                 id="form"
-                className="row bg-body-tertiary g-3 border rounded mt-1 p-5 h-50 w-50 needs-validation shadow"
+                className="row bg-body-tertiary g-3 border rounded p-5 w-50 needs-validation shadow"
             >
                 <h1>Iniciar Sesión</h1>
                 <div className="col-12">
@@ -52,7 +52,7 @@ export const LoginPage = () => {
                     </label>
                     <input
                         type="text"
-                        className="form-control"
+                        className="form-control rounded-5"
                         name="usuario"
                         id="usuario"
                         required=""
@@ -61,11 +61,11 @@ export const LoginPage = () => {
                 </div>
                 <div className="col-12">
                     <label htmlFor="password" className="form-label">
-                        Password
+                        Contraseña
                     </label>
                     <input
                         type="password"
-                        className="form-control"
+                        className="form-control rounded-5"
                         name="password"
                         id="password"
                         required=""
@@ -76,19 +76,20 @@ export const LoginPage = () => {
                     <button
                         type="submit"
                         id="btnSubmit"
-                        className="form-control  btn btn-primary"
+                        className="form-control  btn btn-primary rounded-5"
                     >
                         Ingresar
                     </button>
                 </div>
                 <div className='col-6 '>
-                    <a href="/registro" className="form-control btn btn-primary">
+                    <a href="/registro" className="form-control btn btn-primary rounded-5">
                         Registrarse
                     </a>
                 </div>
                 <div className="col-12">
-                    <a href="/forgotPassword" className="form-control btn btn-primary">
-                        Olvidaste tu contraseña?
+                    <a href="/forgotPassword"  className="icon-link icon-link-hover">
+                        ¿Olvidaste tu contraseña?
+                        <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
                     </a>
                 </div>
             </form>

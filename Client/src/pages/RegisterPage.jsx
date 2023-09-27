@@ -37,12 +37,12 @@ export const RegisterPage = () => {
     }
     return (
         <>
-            <main className="container text-center d-flex flex-column justify-content-center align-items-center ">
+            <main className="container text-center d-flex justify-content-center aling-items-center">
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     action=""
                     id="form"
-                    className="row bg-body-tertiary g-3  border rounded mt-1 p-5 h-50 w-75  shadow"
+                    className="row bg-body-tertiary g-3  border rounded  p-5 w-50 shadow my-2 "
                 >
                     <h1 className='mb-2 mt-0'>Registro</h1>
                     <div className=" col-6">
@@ -58,20 +58,7 @@ export const RegisterPage = () => {
                             {...register("nombreApellido")}
                         />
                     </div>
-                    <div className=" col-3">
-                        <label htmlFor="usuario" className="form-label">
-                            Usuario
-                        </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="usuario"
-                            id="usuario"
-                            requiere=""
-                            {...register("usuario")}
-                        />
-                    </div>
-                    <div className=" col-3">
+                    <div className=" col-6">
                         <label htmlFor="dni" className="form-label">
                             Dni
                         </label>
@@ -82,6 +69,19 @@ export const RegisterPage = () => {
                             id="dni"
                             requiere=""
                             {...register("dni")}
+                        />
+                    </div>
+                    <div className=" col-6">
+                        <label htmlFor="usuario" className="form-label">
+                            Usuario
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="usuario"
+                            id="usuario"
+                            requiere=""
+                            {...register("usuario")}
                         />
                     </div>
                     <div className="col-6">
@@ -123,7 +123,7 @@ export const RegisterPage = () => {
                             {...register("confirmPassword")}
                         />
                     </div>
-                    <div className="col-6">
+                    {/* <div className="col-6">
                         <label htmlFor="pin" className="form-label">
                             Pin
                         </label>
@@ -141,16 +141,16 @@ export const RegisterPage = () => {
                             Foto
                         </label>
                         <input type="file" className="form-control" name="foto" id="foto" />
-                    </div>
-                    <div className="col-4  ">
+                    </div> */}
+                    <div className="col-12 d-flex justify-content-center align-items-center gap-2 ">
                         <button
                             type="submit"
                             id="btnSubmit"
-                            className="form-control my-2 btn btn-primary"
+                            className="form-control  btn btn-primary  rounded-5"
                         >
                             Registrar
                         </button>
-                        <a href="login.html" className="form-control btn btn-primary">
+                        <a href="/ingresar" className='form-control  btn btn-primary  rounded-5'>
                             Ingresar
                         </a>
                     </div>
