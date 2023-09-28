@@ -4,6 +4,7 @@ import { createNewUser, findOneUser, findOneUserbyId, getUserLogin, updateUser }
 import { vincular } from "./vincular.js";
 
 export const newUser = async (req, res) => {
+    console.log(req.body);
     try {
         const existingUser = await findOneUser(req.body.dni);
         if (existingUser) {
@@ -20,12 +21,12 @@ export const newUser = async (req, res) => {
         const token = await createJWT({ id: user.id });
         if (! await vincular(req.body.dni, user.id)) {
             return res.status(400).json({
-                message: "No se pudo vincular el usuario",
+                message: "Usuario creado pero, no se pudo encontrar con su vehiculo",
             });
         };
-        return res.status(201).json({
+        return res.status(200).json({
             message: "Usuario creado",
-            token
+            token: token.token
         });
 
 
