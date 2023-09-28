@@ -80,7 +80,7 @@ export const updateVehicleForUser = async (existingVehicle,id) => {
 export const getVehicleForConsult = async (valor) => {
   console.log(valor);
   try {
-    const vehicle = await Vehicles.findOne({
+    const vehicle = await Vehicles.findAll({
       where: {
         [Op.or]: [
           { dominio: valor },
@@ -108,4 +108,3 @@ export const getVehicleForConsult = async (valor) => {
     return false;
   };
 };
-

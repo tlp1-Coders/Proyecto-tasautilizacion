@@ -8,4 +8,5 @@ const vehiclesRouter = Router();
 
 vehiclesRouter.post('/',getUserInfoByToken,consultVehicleSchema,validateFields,getVehicle);
 
+
 export default vehiclesRouter;

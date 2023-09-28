@@ -1,7 +1,6 @@
-import { getVehicleForConsult } from '../models/vehicles.model.js';
+import {  getVehicleForConsult } from '../models/vehicles.model.js';
 export const getVehicle = async (req, res) => {
     try {
-        console.log(req.user);
         const vehicle= await getVehicleForConsult(req.body.valor||req.user.dni);
         if (!vehicle){
             return res.status(404).json({

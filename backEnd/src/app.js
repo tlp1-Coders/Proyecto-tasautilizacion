@@ -19,8 +19,8 @@ app.use(morgan('dev'));
 app.use(cors());
 
 
-app.use('/auth', authRouter);
-app.use('/vehicles', vehiclesRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/vehicles', vehiclesRouter);
 // app.use('/mp',payMentRoutes)
 connectDB();
 relations();
