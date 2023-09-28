@@ -29,14 +29,6 @@ export const Users = sequelize.define('users', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    pin: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    foto: {
-        type: DataTypes.BLOB,
-        allowNull: true
-    },
 
 }, {
     timestamps: true
