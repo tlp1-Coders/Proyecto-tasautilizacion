@@ -89,7 +89,6 @@ export const LoginPage = () => {
                 <div className="col-12">
                     <a href="/forgotPassword"  className="icon-link icon-link-hover">
                         ¿Olvidaste tu contraseña?
-                        <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
                     </a>
                 </div>
             </form>

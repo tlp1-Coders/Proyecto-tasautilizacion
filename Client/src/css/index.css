@@ -5,7 +5,9 @@
     grid-template-rows: auto 1fr auto;
 }
 body{
-    background: linear-gradient(120deg, rgba(108, 52, 131, 0.8), rgba(88, 214, 141, 0.8));
+    /* background: linear-gradient(120deg, rgba(108, 52, 131, 0.8), rgba(88, 214, 141, 0.8)); */
+    background: linear-gradient(120deg, rgba(58, 103, 171, 0.95), rgba(90, 220, 180, 0.95));
+    /* background: linear-gradient(120deg, rgba(58, 103, 171, 0.9), rgba(0, 173, 187, 0.9)); */
 }
 
 form{

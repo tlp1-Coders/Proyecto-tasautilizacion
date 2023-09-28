@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 export const RegisterPage = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit =  async(valor) => {
+        console.log(valor);
         const response = await fetch('http://localhost:4000/auth/new', {
             method: 'POST',
             headers: {
@@ -16,7 +17,7 @@ export const RegisterPage = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: data.message,
+                text: response.message,
                 showConfirmButton: false,
                 timer: 1500
             });
@@ -25,16 +26,14 @@ export const RegisterPage = () => {
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
-                text: data.message,
+                text: response.message,
                 showConfirmButton: false,
                 timer: 1500
             });
+            window.localStorage.setItem('token', data.token);
+            window.location.href = '/consultas';
         }
-        
-        console.log(data.token);
-        window.localStorage.setItem('token', data.token);
-        window.location.href = '/consultas';
-    }
+        }
     return (
         <>
             <main className="container text-center d-flex justify-content-center aling-items-center">
@@ -123,25 +122,6 @@ export const RegisterPage = () => {
                             {...register("confirmPassword")}
                         />
                     </div>
-                    {/* <div className="col-6">
-                        <label htmlFor="pin" className="form-label">
-                            Pin
-                        </label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            name="pin"
-                            id="pin"
-                            requiere=""
-                            {...register("pin")}
-                        />
-                    </div>
-                    <div className="col-8">
-                        <label htmlFor="foto" className="form-label">
-                            Foto
-                        </label>
-                        <input type="file" className="form-control" name="foto" id="foto" />
-                    </div> */}
                     <div className="col-12 d-flex justify-content-center align-items-center gap-2 ">
                         <button
                             type="submit"
