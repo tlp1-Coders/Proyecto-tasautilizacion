@@ -43,7 +43,8 @@ export const Users = sequelize.define('users', {
 
 
 
-export const findOneUser = async (dni) => {
+export const 
+findOneUser = async (dni) => {
     try {
         const existingUser = await Users.findOne({
             where: {

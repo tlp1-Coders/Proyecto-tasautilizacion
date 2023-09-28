@@ -77,7 +77,8 @@ export const updateVehicleForUser = async (existingVehicle,id) => {
     return false;
   }
 };
-export const getVehicleForConsult = async ({valor}) => {
+export const getVehicleForConsult = async (valor) => {
+  console.log(valor);
   try {
     const vehicle = await Vehicles.findOne({
       where: {

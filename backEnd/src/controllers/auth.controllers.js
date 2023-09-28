@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import { createJWT, verifyJWT } from "../helpers/jwt.js";
 import { resendEmail } from "../helpers/resend.js";
 import { createNewUser, findOneUser, findOneUserbyId, getUserLogin, updateUser } from "../models/users.model.js";
@@ -64,11 +65,16 @@ export const getUserInfoByToken = async (req, res, next) => {
         const token = req.headers.authorization;
         if (!token) {
             return res.status(404).json({
-                message: 'No hay token'
+                message: 'Inicie sesión primero'
             })
         }else{
             
             const { id } = await verifyJWT(token);
+            if (!id) {
+                return res.status(400).json({
+                    message: 'Token inválido'
+                })
+            }
             const user = await findOneUserbyId(id);
             if (!user) {
                 return res.status(404).json({
@@ -80,7 +86,12 @@ export const getUserInfoByToken = async (req, res, next) => {
         }
 
     } catch (error) {
-        console.log(error);
+        if (error instanceof jwt.TokenExpiredError) {
+            return res.status(401).json({
+                message: 'Token expirado, inicie sesión nuevamente'
+            });
+
+        }
         return res.status(500).json({
             message: 'No se pudo obtener el usuario'
         });

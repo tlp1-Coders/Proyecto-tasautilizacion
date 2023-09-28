@@ -17,7 +17,7 @@ export const verifyJWT = (token) => {
   return new Promise((resolve, reject) => {
     jwt.verify(token, process.env.SECRET_KEY, (err, payload) => {
       if (err) {
-        reject('Error al verificar el token')
+        reject(err)
         console.log(err);
       }
       resolve (payload)
