@@ -6,7 +6,7 @@ export const FormConsult = ({register,onSubmit}) => {
             onSubmit={onSubmit}
             action=""
             id="form"
-            className="d-flex flex-column justify-content-center align-items-center mt-5 border rounded bg-body-secondary p-5 shadow "
+            className="d-flex flex-column justify-content-center align-items-center mt-5 border rounded bg-body-tertiary p-5 shadow "
         >
             <div className="mb-3">
                 <label htmlFor="valor" className="form-label">

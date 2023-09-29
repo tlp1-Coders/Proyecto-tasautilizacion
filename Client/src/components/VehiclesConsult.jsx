@@ -4,12 +4,12 @@ export const VehiclesConsult = ({ vehicle }) => {
     console.log(vehicle);
     return (
         <>
-            <section className="container text-center border rounded mt-5 p-5 shadow">
+            <section className="container text-center border rounded mt-5 p-5 shadow bg-body-tertiary bg-opacity-75">
                 <h1>Tus Vehiculos</h1>
                 {vehicle.map((vehicle) => (
-                    <div key={vehicle.id} className="card">
+                    <div key={vehicle.id} className="card ">
                         <div className="card-body">
-                            <table className="table">
+                            <table className="table ">
                                 <thead>
                                     <tr>
                                         <th>Dominio</th>

@@ -10,10 +10,11 @@ export const ConsultPage = () => {
         getvehicleRequest().then(vehicle => setVehicle(vehicle));
     }, [])
     const onSubmit = handleSubmit(async (valor) => setVehicle(await getvehicleRequest(valor)))
+
     return (
         <>
             {vehicle ?
-                <div className="container bg-body-tertiary">
+                <div className="container ">
                     <div className="row justify-content-center aling-items-center " >
                         <main className=' col-8'>
                             {vehicle ? <VehiclesConsult vehicle={vehicle} /> : ''}

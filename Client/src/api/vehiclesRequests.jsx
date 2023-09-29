@@ -1,5 +1,8 @@
 export const getvehicleRequest = async (valor) => {
     const authorization = window.localStorage.getItem('token');
+    if (!authorization) {
+        window.location.href = '/ingresar';
+    }
     const response = await fetch('http://localhost:4000/api/vehicles', {
         method: 'POST',
         headers: {
