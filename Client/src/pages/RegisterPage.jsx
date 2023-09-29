@@ -4,7 +4,7 @@ export const RegisterPage = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit =  async(valor) => {
         console.log(valor);
-        const response = await fetch('http://localhost:4000/auth/new', {
+        const response = await fetch('http://localhost:4000/api/auth/new', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

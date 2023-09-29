@@ -1,12 +1,12 @@
 import React from 'react'
 
-export const FormConsult = ( {handleSubmit}) => {
+export const FormConsult = ({register,onSubmit}) => {
     return (
         <form
-            onSubmit={handleSubmit}
+            onSubmit={onSubmit}
             action=""
             id="form"
-            className="d-flex flex-column justify-content-center align-items-center border rounded p-5 shadow bg-body-tertiary"
+            className="d-flex flex-column justify-content-center align-items-center mt-5 border rounded bg-body-secondary p-5 shadow "
         >
             <div className="mb-3">
                 <label htmlFor="valor" className="form-label">
@@ -14,17 +14,16 @@ export const FormConsult = ( {handleSubmit}) => {
                 </label>
                 <input
                     type="text"
-                    className="form-control rounded-4"
+                    className="form-control"
                     name="valor"
                     id="valor"
                     {...register("valor")}
                 />
             </div>
-            <div className=''>
-                <button type="submit" className="btn btn-primary rounded-5 px-5">
-                    Consultar
-                </button>
-            </div>
+            <button type="submit" className="btn btn-primary">
+                Buscar
+            </button>
         </form>
-    )
+            )
+
 }
