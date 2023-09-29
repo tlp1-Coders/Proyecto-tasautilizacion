@@ -77,7 +77,7 @@ export const updateVehicleForUser = async (existingVehicle,id) => {
     return false;
   }
 };
-export const getVehicleForConsult = async (valor) => {
+export const getVehicleForConsult = async (valor, id) => {
   console.log(valor);
   try {
     const vehicle = await Vehicles.findAll({
@@ -87,7 +87,7 @@ export const getVehicleForConsult = async (valor) => {
           { dniUser: valor }
         ]
       },
-      attributes: ['id', 'tipoVehiculo', 'dominio', 'detalles'],
+      attributes: ['id',  'idUser', 'tipoVehiculo', 'dominio', 'detalles'],
       include: [
         {
           model: Users,
@@ -99,8 +99,8 @@ export const getVehicleForConsult = async (valor) => {
         }
       ]
     });
-    if (!vehicle) {
-      return false;
+    if(!vehicle){
+      return false
     }
     return vehicle;
   } catch (error) {
