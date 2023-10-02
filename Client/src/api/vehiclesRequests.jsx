@@ -1,7 +1,8 @@
+
 export const getvehicleRequest = async (valor) => {
     const authorization = window.localStorage.getItem('token');
     if (!authorization) {
-        window.location.href = '/ingresar';
+       return null
     }
     const response = await fetch('http://localhost:4000/api/vehicles', {
         method: 'POST',
@@ -22,15 +23,11 @@ export const getvehicleRequest = async (valor) => {
             showConfirmButton: true,
             timer: 2500
         });
+        if (response.status === 401) {
+            window.localStorage.removeItem('token');
+        }
     }
-    else {
-        Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: data.message,
-            showConfirmButton: false,
-            timer: 500
-        });
+    
         return (data.vehicle);
-    }
+    
 }

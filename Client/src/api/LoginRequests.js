@@ -15,6 +15,7 @@ export const loginRequest =  async(valor) => {
             showConfirmButton: false,
             timer: 1500
         });
+        window.localStorage.removeItem('token');
     }
     else {
         Swal.fire({
