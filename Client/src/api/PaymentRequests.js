@@ -1,0 +1,68 @@
+export const paymentGetRequest =  async(id) => {
+    try {
+        const response = await fetch(`http://localhost:4000/api/debts/${id}`, {
+            method:'GET',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+        });
+        const data = await response.json();
+        if (response.status !== 200) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+        else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: data.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+
+
+    
+}
+export const paymentPutRequest =  async(id,valor) => {
+    try {
+        const response = await fetch(`http://localhost:4000/api/debts/${id}`, {
+            method:'PUT',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(valor)
+        });
+        const data = await response.json();
+        if (response.status !== 200) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+        else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: data.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+        return data
+    } catch (error) {
+        console.log(error);
+    }
+}

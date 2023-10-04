@@ -23,7 +23,7 @@ app.use(cors());
 app.use('/api/auth', authRouter);
 app.use('/api/vehicles', vehiclesRouter);
 app.use('/api/debts', debtsRoutes);
-// app.use('/mp',payMentRoutes)
+app.use('/mp',payMentRoutes)
 connectDB();
 relations();
 

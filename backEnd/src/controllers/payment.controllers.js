@@ -18,7 +18,7 @@ export const createOrder = async (req, res) => {
             failure: "http://localhost:4000/mp/failure",
             pending: "http://localhost:4000/mp/pending",
         },
-        notification_url: "https://e494-45-229-38-64.ngrok.io/mp/webhook",
+        notification_url: "https://zw044vqw-4000.brs.devtunnels.ms/",
     });
     res.send(response.body.init_point);
 };

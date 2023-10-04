@@ -19,7 +19,7 @@ function App() {
         <Route path='/consultas' element={< ConsultPage />} />
         <Route path='/ingresar' element={<LoginPage />} />
         <Route path='/registro' element={<RegisterPage />} />
-        <Route path='/pagos' element={<PaymentPage />} />
+        <Route path='/pagos/:id' element={<PaymentPage />} />
         <Route path='/forgotPassword' element={<PasswordPage />} />
         <Route path='/updatePassword' element={<UpdatePasswordPage />} />
       </Routes>

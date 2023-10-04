@@ -1,7 +1,11 @@
-import React from 'react'
+import { useNavigate } from "react-router-dom";
 
 export const VehiclesConsult = ({ vehicle }) => {
-    console.log(vehicle);
+    const navigate = useNavigate();
+    const handleOnClik = (e) => {
+        const debtId=e.target.id;
+        navigate(`/pagos/${debtId}`);
+    }
     return (
         <>
             {/* <section className="container text-center border rounded mt-5 p-5 shadow bg-body-tertiary bg-opacity-75">
@@ -55,7 +59,7 @@ export const VehiclesConsult = ({ vehicle }) => {
                         <div className="card-body row justify-content-center">
                             {vehicle.debts.length > 0 ?
                                 vehicle.debts.map((deuda, index) => (
-                                    <ul  key={deuda.id} className=' col-6 list-group'>
+                                    <ul key={deuda.id} className=' col-6 list-group'>
                                         <li className='list-group-item'>
                                             <strong>Deuda número:</strong> {index + 1}
                                         </li >
@@ -68,8 +72,13 @@ export const VehiclesConsult = ({ vehicle }) => {
                                         <li className='list-group-item'>
                                             <strong>Monto de la deuda:</strong> ${deuda.montoDeuda}
                                         </li>
-                                        <div className="card-footer list-group-item">
-                                            <button id={deuda.id} className='btn btn-primary'>Pagar deuda</button>
+                                        <div
+                                            onClick={handleOnClik}
+                                            className="card-footer list-group-item">
+                                            <button
+                                                id={deuda.id} className='btn btn-primary'>
+                                                Pagar deuda
+                                            </button>
                                         </div>
                                     </ul>
                                 )) : <div>
