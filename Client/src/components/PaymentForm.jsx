@@ -46,8 +46,8 @@ export const PaymentForm = () => {
     >   
         <h1 className='form-label'>{debt.vehicle?.tipoVehiculo}</h1>
         <h2 className='form-label'>{debt.vehicle?.dominio}</h2>
-        <h4>Peridoso adeudados: {debt.periodoDeuda}</h4>
-        <h4>Monto adeudado: {debt.montoDeuda}</h4>
+        <h4>Periodos Adeudados: {debt.periodoDeuda}</h4>
+        <h4>Monto Total: {debt.montoDeuda}</h4>
         <label className='form-label' htmlFor="periodo">Periodos a pagar</label>
         <input type="text" className="form-control"  name="periodo" required
         {...register("periodo", { min: 1, max: debt.periodoDeuda })}/>
