@@ -1,5 +1,6 @@
 import  {sequelize}  from '../db.js';
 import { DataTypes } from 'sequelize';
+import { Vehicles } from './vehicles.model.js';
 
 export const Debts = sequelize.define('debts', {
     id: {
@@ -39,3 +40,39 @@ export const Debts = sequelize.define('debts', {
         tableName: 'debts'
 });
 
+export const getDebt=async(id)=>{
+    try {
+        const existingDebt = await Debts.findByPk(id, {
+          include: [
+            {
+              model: Vehicles,
+              attributes: ['tipoVehiculo', 'dominio', 'detalles'],
+            }
+          ]
+        });
+        if (!existingDebt) {
+            return false;
+        }
+        return existingDebt;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+};
+
+export const upDateDebt=async(id, debt)=>{
+    try {
+        const updatedDebt = await Debts.update({...debt}, {
+            where: {
+                id
+            }
+        });
+        if (!updatedDebt) {
+            return false;
+        }
+        return updatedDebt;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }       
+}
