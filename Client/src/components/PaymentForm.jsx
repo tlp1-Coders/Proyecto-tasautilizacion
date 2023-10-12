@@ -1,36 +1,27 @@
 import { useEffect, useState } from "react"
-import { paymentGetRequest } from "../api/PaymentRequests"
+import { MPCreateOrderRequest, paymentGetRequest } from "../api/PaymentRequests"
 import { useParams } from "react-router-dom"
 import { useForm } from "react-hook-form";
+import {initMercadoPago,Wallet} from '@mercadopago/sdk-react';
 
 export const PaymentForm = () => {
   const { register, handleSubmit } = useForm();
-  const hanldeOnsubmit =(data) => {
+  const[preferenceId, setPreferenceId] = useState(null);
+  initMercadoPago('TEST-6a196418-a291-4425-a670-7ca9b8606c37')
+  const hanldeOnsubmit = async(data) => {
     console.log(data);
-    let costo= (debt.montoDeuda/debt.periodoDeuda)*data.periodo;
-    const paraMP={
-      price: costo,
+
+    const mpOrder={
+      price: (debt.montoDeuda/debt.periodoDeuda),
       quantity: data.periodo
     }
-    console.log(paraMP);
-    if (data.periodo!=debt.periodoDeuda){
-      const debtUpdate={
-        periodoDeuda: debt.periodoDeuda-data.periodo,
-        montoDeuda: debt.montoDeuda-costo,
-        estadoDeuda: true
-        
-      };
-      console.log(debtUpdate);
-    }else{
-      const debtUpdate={
-        montoDeuda: debt.montoDeuda-costo,
-        estadoDeuda: false
-      };
-      console.log(debtUpdate);
-    }
-    console.log(costo);
-    
+    const pago= await MPCreateOrderRequest(mpOrder);
+    console.log(mpOrder);
+    console.log('pago',pago.PaymentId);
+    setPreferenceId(pago.PaymentId);
   }
+  console.log(preferenceId);
+
   const [debt, setDebt] = useState([])
   const { id } = useParams();
   useEffect(() => {
@@ -51,7 +42,8 @@ export const PaymentForm = () => {
         <label className='form-label' htmlFor="periodo">Periodos a pagar</label>
         <input type="text" className="form-control"  name="periodo" required
         {...register("periodo", { min: 1, max: debt.periodoDeuda })}/>
-        <button className='btn btn-primary mt-3'>Pagar</button>
+        <button className='btn btn-primary mt-3'>Generar Pago</button>
+        <div>{preferenceId&&<Wallet initialization={{preferenceId:preferenceId}}/>}</div>
     </form>
     
     </>

@@ -17,4 +17,5 @@ export const getDebtbyid= async (req,res)=>{
             message: 'No se pudo obtener la deuda, error de servidor'
         });
     }
-}
+};
+
