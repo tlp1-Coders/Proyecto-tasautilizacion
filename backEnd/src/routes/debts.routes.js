@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { getDebtbyid } from '../controllers/debts.controllers.js';
+import { debtUpdate, getDebtbyid } from '../controllers/debts.controllers.js';
 
 const debtsRoutes = Router();
 
 
 debtsRoutes.get('/:id', getDebtbyid)
+debtsRoutes.put('/', debtUpdate);
 
 
 export default debtsRoutes

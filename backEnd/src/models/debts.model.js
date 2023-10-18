@@ -43,6 +43,9 @@ export const Debts = sequelize.define('debts', {
 export const getDebt=async(id)=>{
     try {
         const existingDebt = await Debts.findByPk(id, {
+          where:{
+            estadoDeuda:true
+          },
           include: [
             {
               model: Vehicles,

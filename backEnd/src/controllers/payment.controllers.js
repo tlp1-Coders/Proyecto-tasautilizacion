@@ -1,22 +1,22 @@
 import mercadopago from "mercadopago";
-import { upDateDebt } from "../models/debts.model.js";
+
 export const createOrder = async (req, res) => {
   mercadopago.configure({
     access_token: process.env.ACCESS_TOKEN_MP,
   });
-  const {price, quantity} = req.body;
+  const {price, quantity, title} = req.body;
   const response = await mercadopago.preferences.create({
     items: [
       {
-        title: "Deuda",
+        title: title,
         unit_price: Number(price),
         currency_id: "ARS",
         quantity: Number(quantity),
       },
     ],
     back_urls: {
-      success: "http://localhost:4000/mp/success",
-      failure: "http://localhost:4000/mp/failure",
+      success: `${process.env.FRONTEND_URL}mp/success`,
+      failure: `${process.env.FRONTEND_URL}mp/failure`,
       pending: "http://localhost:4000/mp/pending",
     },
     auto_return: "approved",
