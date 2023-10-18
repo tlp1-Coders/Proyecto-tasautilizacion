@@ -9,6 +9,7 @@ import NavBar from './components/Navbar.jsx';
 import { PasswordPage } from './pages/PasswordPage.jsx';
 import { UpdatePasswordPage } from './pages/UpdatePasswordPage.jsx';
 import { Footer } from './components/Footer.jsx';
+import { PaymentAprovedPage } from './pages/PaymentAprovedPage';
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <Route path='/registro' element={<RegisterPage />} />
         <Route path='/pagos/:id' element={<PaymentPage />} />
         <Route path='/forgotPassword' element={<PasswordPage />} />
-        <Route path='/updatePassword' element={<UpdatePasswordPage />} />
+        <Route path='/updatePassword' element={<UpdatePasswordPage />} />4
+        <Route path='/mp/success' element={<PaymentAprovedPage />} />
       </Routes>
       <Footer />
     </>

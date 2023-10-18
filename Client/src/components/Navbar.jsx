@@ -45,11 +45,11 @@ export default function NavBar() {
                       </li>
                   )
                 }
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link className="nav-link active" to="/pagos">
                     Pagar
                   </Link>
-                </li>
+                </li> */}
             {
                   token?
                     <li className="nav-item">

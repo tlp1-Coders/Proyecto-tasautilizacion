@@ -33,14 +33,14 @@ export const paymentGetRequest =  async(id) => {
 
     
 };
-export const paymentPutRequest =  async(id,valor) => {
+export const paymentPutRequest =  async(mpOrder) => {
     try {
-        const response = await fetch(`http://localhost:4000/api/debts/${id}`, {
+        const response = await fetch(`http://localhost:4000/api/debts`, {
             method:'PUT',
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(valor)
+            body: mpOrder
         });
         const data = await response.json();
         if (response.status !== 200) {
