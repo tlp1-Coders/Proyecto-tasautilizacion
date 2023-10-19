@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 export const PasswordPage = () => {
     const {register, handleSubmit} = useForm();
     const onsubmit =  async(valor) => {
-        const response = await fetch(`http://localhost:4000/auth/forgotPassword`,{
+        const response = await fetch(`http://localhost:4000/api/auth/forgotPassword`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -13,6 +13,7 @@ export const PasswordPage = () => {
             body: JSON.stringify(valor)
         })
         const data = await response.json();
+        console.log(data);
         if (response.status !== 200) {
             Swal.fire({
                 icon: 'error',
