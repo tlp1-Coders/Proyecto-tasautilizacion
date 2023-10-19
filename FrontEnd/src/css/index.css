@@ -1,0 +1,15 @@
+#root{
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+body{
+    
+    background: linear-gradient(120deg, rgba(58, 103, 171, 0.95), rgba(90, 220, 180, 0.95));
+}
+
+form, header{
+    opacity: 0.8!important;
+    /* color:black; */
+}
