@@ -1,5 +1,7 @@
+// import { useNavigate } from "react-router-dom";
 export const registerRequest =  async(valor) => {
-    console.log(valor);
+    // const navigate = useNavigate();
+    // console.log(valor);
     const response = await fetch('http://localhost:4000/api/auth/new', {
         method: 'POST',
         headers: {
@@ -27,6 +29,7 @@ export const registerRequest =  async(valor) => {
             timer: 1500
         });
         window.localStorage.setItem('token', data.token);
+        // navigate('/consultas');
         window.location.href = '/consultas';
     }
     }

@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 
 export const LoginForm = ( {register,onSubmit}) => {
     return (
@@ -44,14 +46,14 @@ export const LoginForm = ( {register,onSubmit}) => {
                 </button>
             </div>
             <div className='col-6 '>
-                <a href="/registro" className="form-control btn btn-primary rounded-5">
+                <Link to="/registro" className="form-control btn btn-primary rounded-5">
                     Registrarse
-                </a>
+                </Link>
             </div>
             <div className="col-12">
-                <a href="/forgotPassword" className="icon-link icon-link-hover">
+                <Link to="/forgotPassword" className="icon-link icon-link-hover">
                     ¿Olvidaste tu contraseña?
-                </a>
+                </Link>
             </div>
         </form>
     )
