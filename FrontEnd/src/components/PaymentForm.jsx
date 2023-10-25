@@ -52,15 +52,23 @@ export const PaymentForm = () => {
           required
           {...register("periodo", { min: 1, max: debt.periodoDeuda })}
         />
-        <button className="btn btn-primary mt-3">Generar Pago</button>
+        
         <div>
-          {preferenceId && (
+          {preferenceId ? (
             <Wallet
               initialization={{
+                customization: {
+                  texts: {
+                    action: 'buy',
+                    valueProp: 'none',
+                  }
+                },
                 preferenceId: preferenceId,
                 redirectMode: "modal",
               }}
             />
+          ):(
+            <button className="btn btn-primary mt-3">Generar Pago</button>
           )}
         </div>
       </form>

@@ -8,7 +8,7 @@ export const UpdatePasswordPage = () => {
     const searchParams = new URLSearchParams(location.search);
     const token = searchParams.get('token');
     const onsubmit = async (valor) => {
-        const response = await fetch(`http://localhost:4000/auth/resetPassword/${token}`, {
+        const response = await fetch(`http://localhost:4000/api/auth/resetPassword/${token}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

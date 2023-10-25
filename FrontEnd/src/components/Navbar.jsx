@@ -12,7 +12,7 @@ export default function NavBar() {
   return (
     <>
       <header className="">
-        <nav className="navbar navbar-expand-lg bg-body-tertiary ">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary bg-opacity-75">
           <div className="container">
             <Link className="navbar-brand" to="/">
               <img src="../../public/muni2.jpeg" alt="" className="logo-nav me-2" />

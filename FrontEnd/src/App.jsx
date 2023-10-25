@@ -10,17 +10,16 @@ import { PasswordPage } from './pages/PasswordPage.jsx';
 import { UpdatePasswordPage } from './pages/UpdatePasswordPage.jsx';
 import { Footer } from './components/Footer.jsx';
 import { PaymentAprovedPage } from './pages/PaymentAprovedPage';
-import { NewNavbar } from './components/newNavbar';
 
 function App() {
   return (
     <>
-      <NewNavbar />
+      <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path='/Consultas' element={< ConsultPage />} />
-        <Route path='/Ingresar' element={<LoginPage />} />
-        <Route path='/Registrarse' element={<RegisterPage />} />
+        <Route path='/consultas' element={< ConsultPage />} />
+        <Route path='/ingresar' element={<LoginPage />} />
+        <Route path='/registro' element={<RegisterPage />} />
         <Route path='/pagos/:id' element={<PaymentPage />} />
         <Route path='/forgotPassword' element={<PasswordPage />} />
         <Route path='/updatePassword' element={<UpdatePasswordPage />} />4

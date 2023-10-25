@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom';
 export const RegisterForm = ({ register, onSubmit }) => {
     return (
         <form
@@ -61,7 +61,7 @@ export const RegisterForm = ({ register, onSubmit }) => {
                     className="form-control"
                     name="email"
                     id="email"
-                    requiered
+                    required
                     {...register("email")}
                 />
             </div>
@@ -99,9 +99,9 @@ export const RegisterForm = ({ register, onSubmit }) => {
                 >
                     Registrar
                 </button>
-                <a href="/ingresar" className='form-control  btn btn-primary  rounded-5'>
+                <Link to="/ingresar" className='form-control  btn btn-primary  rounded-5'>
                     Ingresar
-                </a>
+                </Link>
             </div>
         </form>
     )
