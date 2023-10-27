@@ -1,7 +1,6 @@
-// import { useNavigate } from "react-router-dom";
 export const registerRequest =  async(valor) => {
-    // const navigate = useNavigate();
-    // console.log(valor);
+
+   try {
     const response = await fetch('http://localhost:4000/api/auth/new', {
         method: 'POST',
         headers: {
@@ -21,15 +20,10 @@ export const registerRequest =  async(valor) => {
         });
     }
     else {
-        Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: response.message,
-            showConfirmButton: false,
-            timer: 1500
-        });
-        window.localStorage.setItem('token', data.token);
-        // navigate('/consultas');
-        window.location.href = '/consultas';
+       return data
     }
+    
+   } catch (error) {
+       console.log(error);
+   }
     }

@@ -10,7 +10,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 export const PaymentForm = () => {
   const { register, handleSubmit } = useForm();
   const [preferenceId, setPreferenceId] = useState(null);
-  initMercadoPago("TEST-6a196418-a291-4425-a670-7ca9b8606c37");
+  initMercadoPago(import.meta.env.VITE_publicKeyMP);
   const hanldeOnsubmit = async (data) => {
     const mpOrder = {
       title: debt.vehicle?.tipoVehiculo + debt.vehicle?.dominio,

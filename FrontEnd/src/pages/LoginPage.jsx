@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useContext} from 'react'
 import { useForm } from 'react-hook-form';
-import { loginRequest } from '../api/LoginRequests';
+
 import { LoginForm } from '../components/LoginForm';
+import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
 
 export const LoginPage = () => {
+    const navigate = useNavigate();
+   const { loginUser } = useContext(AuthContext);
     const {register, handleSubmit} = useForm();
-    const onSubmit = handleSubmit(loginRequest)
+    const onSubmit = handleSubmit(async (valor) => {
+        if(await loginUser(valor)){
+            navigate('/consultas');
+        }
+    });
+
     return (
         <>
         <main className="container text-center d-flex flex-column justify-content-center align-items-center my-5">
