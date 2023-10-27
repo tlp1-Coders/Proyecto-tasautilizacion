@@ -1,20 +1,40 @@
 import { findOneUserbyId } from '../models/users.model.js';
 import {verifyJWT} from '../helpers/jwt.js';
+import  jwt  from 'jsonwebtoken';
 
-export const getUser = async (req, res, next) => {
-  const token = req.headers.authorization
+export const getUserInfoToken = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+    if (!token) {
+        return res.status(404).json({
+            message: 'Inicie sesión primero'
+        })
+    }else{
+        
+        const { id } = await verifyJWT(token);
+        if (!id) {
+            return res.status(400).json({
+                message: 'Token inválido'
+            })
+        }
+        const user = await findOneUserbyId(id);
+        if (!user) {
+            return res.status(404).json({
+                message: 'Usuario no encontrado'
+            });
+        }
+        req.user = user
+        next();
+    }
 
-  if (!token) {
-    return res.sendStatus(404)
-  }
-
-  const { id } = await verifyJWT(token);
-  const user = await findOneUserbyId(id);
-  if (!user) {
-    return res.status(404).json({
-      message: 'Usuario no encontrado'
+} catch (error) {
+  if (error instanceof jwt.TokenExpiredError) {
+    return res.status(401).json({
+      message: "Token expirado, inicie sesión nuevamente",
     });
   }
-  req.user = user
-  next()
+  return res.status(500).json({
+    message: "No se pudo obtener el usuario",
+  });
+}
 }

@@ -26,7 +26,7 @@ export const newUser = async (req, res) => {
             });
         };
         return res.status(200).json({
-            message: "Usuario creado",
+            user,
             token: token.token
         });
 
@@ -49,7 +49,7 @@ export const loginUser = async (req, res) => {
         console.log(existingUser.id);
         const token = await createJWT({ id: existingUser.id });
         return res.status(200).json({
-            message: 'Usuario logueado',
+            user:existingUser,
             token: token.token
         });
     } catch (error) {
@@ -60,7 +60,7 @@ export const loginUser = async (req, res) => {
     }
 };
 
-export const getUserInfoByToken = async (req, res, next) => {
+export const getUserInfoByToken = async (req, res) => {
     try {
         const token = req.headers.authorization;
         if (!token) {
@@ -81,8 +81,9 @@ export const getUserInfoByToken = async (req, res, next) => {
                     message: 'Usuario no encontrado'
                 });
             }
-            req.user = user
-            next();
+            return res.status(200).json({
+               user
+            })
         }
 
     } catch (error) {
