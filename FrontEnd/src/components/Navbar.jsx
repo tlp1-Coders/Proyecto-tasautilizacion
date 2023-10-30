@@ -65,9 +65,19 @@ export default function NavBar() {
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      {user}
+                  
+                        {user}
+                        <img className="rounded-circle ms-2 me-2 pointer-event" src="../../public/person-circle.svg" alt="" />
+                        
+                  
+                      
                     </Link>
                     <ul className="dropdown-menu">
+                      <li>
+                        <Link className="dropdown-item" to="/misVehiculos">
+                          Mis Vehiculos
+                        </Link>
+                      </li>
                       <li>
                         <Link className="dropdown-item" to="#">
                           Cambiar Contraseña

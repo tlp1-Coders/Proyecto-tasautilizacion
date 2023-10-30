@@ -10,6 +10,7 @@ import { PasswordPage } from './pages/PasswordPage.jsx';
 import { UpdatePasswordPage } from './pages/UpdatePasswordPage.jsx';
 import { Footer } from './components/Footer.jsx';
 import { PaymentAprovedPage } from './pages/PaymentAprovedPage';
+import { MyVheiclesPage } from './pages/MyVheiclesPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path='/consultas' element={< ConsultPage />} />
+        <Route path='/misVehiculos' element={<MyVheiclesPage />} />
         <Route path='/ingresar' element={<LoginPage />} />
         <Route path='/registro' element={<RegisterPage />} />
         <Route path='/pagos/:id' element={<PaymentPage />} />

@@ -11,7 +11,7 @@ export const RegisterPage = () => {
     const onSubmit = handleSubmit(async(valor)=>{
         const res=await RegisterUser(valor);
         if(res){
-            navigate('/login');
+            navigate('/misVehiculos');
         }
     })
     return (

@@ -12,7 +12,7 @@ export const LoginPage = () => {
     const {register, handleSubmit} = useForm();
     const onSubmit = handleSubmit(async (valor) => {
         if(await loginUser(valor)){
-            navigate('/consultas');
+            navigate('/misVehiculos');
         }
     });
 

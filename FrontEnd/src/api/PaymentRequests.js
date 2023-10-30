@@ -16,15 +16,6 @@ export const paymentGetRequest =  async(id) => {
                 timer: 1500
             });
         }
-        else {
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: data.message,
-                showConfirmButton: false,
-                timer: 1500
-            });
-        }
         return data
     } catch (error) {
         console.log(error);
