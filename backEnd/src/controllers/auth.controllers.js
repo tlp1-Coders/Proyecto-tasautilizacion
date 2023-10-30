@@ -21,7 +21,9 @@ export const newUser = async (req, res) => {
         }
         const token = await createJWT({ id: user.id });
         if (! await vincular(req.body.dni, user.id)) {
-            return res.status(400).json({
+            return res.status(200).json({
+                user,
+                token: token.token,
                 message: "Usuario creado pero, no se pudo encontrar con su vehiculo",
             });
         };

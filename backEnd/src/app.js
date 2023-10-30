@@ -24,7 +24,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/vehicles', vehiclesRouter);
 app.use('/api/debts', debtsRoutes);
 app.use('/mp',payMentRoutes)
-connectDB();
+await connectDB();
 relations();
 
 
