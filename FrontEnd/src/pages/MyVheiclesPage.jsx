@@ -18,7 +18,9 @@ export const MyVheiclesPage = () => {
           {vehicle.length>0 ? (
             <VehiclesConsult vehicle={vehicle} />
           ) : (
-            <h1 className="card-title">No tienes vehiculos</h1>
+            <section className="d-flex justify-content-center align-items-center border border-black rounded mt-2 p-2 shadow h-75 w-75">
+              <h1 className="card-title">No tienes vehiculos</h1>
+            </section>
           )}
         </main>
       }

@@ -8,10 +8,9 @@ export const VehiclesConsult = ({ vehicle }) => {
   };
   return (
     <>
-      <section className="row justify-content-center text-center border rounded mt-2 p-2 shadow bg-body-tertiary bg-opacity-75">
-        <h4 className="card-title col-12">Tus Vehiculos</h4>
+      <section className="row justify-content-center aling-items-center bg-body-secondary bg-opacity-75 text-center border rounded mt-2 p-2 shadow">
         {vehicle.map((vehicle) => (
-          <div key={vehicle.id} className="card col-12">
+          <div key={vehicle.id} className="card col-12 ">
             <div className="card-header bg-transparent">
               <h5 className="card-title">{vehicle.tipoVehiculo}</h5>
               <h6 className="card-subtitle">{vehicle.dominio}</h6>
@@ -19,7 +18,7 @@ export const VehiclesConsult = ({ vehicle }) => {
             <div className="card-body row justify-content-center">
               {vehicle.debts.length > 0 ? (
                 vehicle.debts.map((deuda, index) => (
-                  <ul key={deuda.id} className=" col-6 list-group">
+                  <ul key={deuda.id} className=" col-6 list-group ">
                     <li className="list-group-item">
                       <strong>Deuda número:</strong> {index + 1}
                     </li>
@@ -51,6 +50,7 @@ export const VehiclesConsult = ({ vehicle }) => {
           </div>
         ))}
       </section>
+
     </>
   );
 };
