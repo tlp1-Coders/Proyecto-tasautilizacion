@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-export const LoginForm = ( {register,onSubmit}) => {
+export const LoginForm = ( {register,onSubmit, errors}) => {
     return (
         <form
             onSubmit={onSubmit}
@@ -20,8 +20,11 @@ export const LoginForm = ( {register,onSubmit}) => {
                     name="usuario"
                     id="usuario"
                     required=""
-                    {...register('usuario')}
-                />
+                    {...register('usuario',{
+                        required: true
+                    })}
+                    />
+                    {errors.usuario && <p className="text-danger">El usuario es obligatorio</p>}
             </div>
             <div className="col-12">
                 <label htmlFor="password" className="form-label">
@@ -33,8 +36,12 @@ export const LoginForm = ( {register,onSubmit}) => {
                     name="password"
                     id="password"
                     required=""
-                    {...register('password')}
+                    {...register('password',
+                        {
+                            required: true
+                        })}
                 />
+                {errors.password && <p className="text-danger">La contraseña es obligatoria</p>}
             </div>
             <div className="col-6">
                 <button

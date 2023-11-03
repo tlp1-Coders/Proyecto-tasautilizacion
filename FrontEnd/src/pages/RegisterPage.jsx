@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 export const RegisterPage = () => {
     const navigate = useNavigate();
     const {RegisterUser}=useContext(AuthContext);
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors },getValues } = useForm();
     const onSubmit = handleSubmit(async(valor)=>{
         const res=await RegisterUser(valor);
         if(res){
@@ -17,7 +17,7 @@ export const RegisterPage = () => {
     return (
         <>
             <main className="container text-center d-flex justify-content-center aling-items-center">
-                <RegisterForm onSubmit={onSubmit} register={register}/>
+                <RegisterForm onSubmit={onSubmit} register={register} errors={errors} getValues={getValues}/>
             </main>
 
         </>

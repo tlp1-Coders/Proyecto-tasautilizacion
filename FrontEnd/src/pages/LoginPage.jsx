@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 export const LoginPage = () => {
     const navigate = useNavigate();
    const { loginUser } = useContext(AuthContext);
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, formState: { errors }} = useForm();
     const onSubmit = handleSubmit(async (valor) => {
         if(await loginUser(valor)){
             navigate('/misVehiculos');
@@ -19,7 +19,7 @@ export const LoginPage = () => {
     return (
         <>
         <main className="container text-center d-flex flex-column justify-content-center align-items-center my-5">
-                <LoginForm onSubmit={onSubmit} register={register}/>
+                <LoginForm onSubmit={onSubmit} register={register} errors={errors}/>
         </main>
 
     </>

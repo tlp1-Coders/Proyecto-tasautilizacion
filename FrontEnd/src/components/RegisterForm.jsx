@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-export const RegisterForm = ({ register, onSubmit }) => {
+export const RegisterForm = ({ register, onSubmit,errors,getValues }) => {
     return (
         <form
 
@@ -19,9 +19,11 @@ export const RegisterForm = ({ register, onSubmit }) => {
                     className="form-control"
                     name="nombreApellido"
                     id="nombreApellido"
-                    required
-                    {...register("nombreApellido")}
+                    {...register("nombreApellido",{
+                        required: true
+                    })}
                 />
+                {errors.nombreApellido && <p className="text-danger">El nombre es obligatorio</p>}
             </div>
             <div className=" col-6">
                 <label htmlFor="dni" className="form-label">
@@ -32,12 +34,13 @@ export const RegisterForm = ({ register, onSubmit }) => {
                     className="form-control"
                     name="dni"
                     id="dni"
-                    required
                     {...register("dni",{
+                        required: true,
                         minLength: 8,
                         maxLength: 8,
                     })}
                 />
+                {errors.dni && <p className="text-danger">El dni debe ser de 8 digitos</p>}
             </div>
             <div className=" col-6">
                 <label htmlFor="usuario" className="form-label">
@@ -48,9 +51,11 @@ export const RegisterForm = ({ register, onSubmit }) => {
                     className="form-control"
                     name="usuario"
                     id="usuario"
-                    required
-                    {...register("usuario")}
+                    {...register("usuario",{
+                        required: true
+                    })}
                 />
+                {errors.usuario && <p className="text-danger">El usuario es obligatorio</p>}
             </div>
             <div className="col-6">
                 <label htmlFor="email" className="form-label">
@@ -61,9 +66,11 @@ export const RegisterForm = ({ register, onSubmit }) => {
                     className="form-control"
                     name="email"
                     id="email"
-                    required
-                    {...register("email")}
+                    {...register("email",{
+                        required: true
+                    })}
                 />
+                {errors.email && <p className="text-danger">El email es obligatorio</p>}
             </div>
             <div className="col-6">
                 <label htmlFor="password" className="form-label">
@@ -74,9 +81,12 @@ export const RegisterForm = ({ register, onSubmit }) => {
                     className="form-control"
                     name="password"
                     id="password"
-                    required
-                    {...register("password")}
+                    {...register("password",{
+                        minLength: 8,
+                        required: true
+                    })}
                 />
+                {errors.password && <p className="text-danger">La contraseña debe ser de minimo 8 digitos</p>}
             </div>
             <div className="col-6">
                 <label htmlFor="confirmPassword" className="form-label">
@@ -87,9 +97,14 @@ export const RegisterForm = ({ register, onSubmit }) => {
                     className="form-control"
                     name="confirmPassword"
                     id="confirmPassword"
-                    required
-                    {...register("confirmPassword")}
+                
+                    {...register("confirmPassword",
+                        {
+                            required: true,
+                            validate: (value) => value === getValues("password"),
+                        })}
                 />
+                {errors.confirmPassword && <p className="text-danger">Las contraseñas no coinciden</p>}
             </div>
             <div className="col-12 d-flex justify-content-center align-items-center gap-2 ">
                 <button
