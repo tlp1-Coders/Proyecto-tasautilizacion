@@ -11,11 +11,12 @@ import { UpdatePasswordPage } from './pages/UpdatePasswordPage.jsx';
 import { Footer } from './components/Footer.jsx';
 import { PaymentAprovedPage } from './pages/PaymentAprovedPage';
 import { MyVheiclesPage } from './pages/MyVheiclesPage';
+import { TestNavBar } from './components/TestNavBar.jsx';
 
 function App() {
   return (
     <>
-      <NavBar />
+      <TestNavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path='/consultas' element={< ConsultPage />} />
