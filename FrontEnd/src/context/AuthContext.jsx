@@ -4,6 +4,7 @@ import { registerRequest } from "../api/RegisterRequests";
 import { getUserInfoByToken } from "../api/UserTokenRequests";
 
 export const AuthContext = createContext();
+export const useAuthContext = () => useContext(AuthContext)
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -45,9 +46,10 @@ export const AuthContextProvider = ({ children }) => {
     setToken(null);
     setUser(null);
   };
+
   return (
     <AuthContext.Provider
-      value={{ loginUser, RegisterUser, logout, user, token }}
+      value={{ loginUser, RegisterUser, logout, user, token, useAuthContext }}
     >
       {children}
     </AuthContext.Provider>
