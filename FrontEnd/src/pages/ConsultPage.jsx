@@ -6,8 +6,10 @@ import { getvehicleRequest } from "../api/vehiclesRequests";
 export const ConsultPage = () => {
   const { register, handleSubmit } = useForm();
   const [vehicle, setVehicle] = useState([]);
-  const onSubmit = handleSubmit(async (valor) =>
-    setVehicle(await getvehicleRequest(valor))
+  const onSubmit = handleSubmit(async (valor) =>{
+    const vehicleData = await getvehicleRequest(valor)
+    setVehicle(vehicleData)
+  }
   );
   return (
     <>
