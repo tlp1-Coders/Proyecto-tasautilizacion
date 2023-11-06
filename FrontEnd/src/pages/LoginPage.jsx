@@ -1,17 +1,17 @@
-import React, { useContext} from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form';
-
 import { LoginForm } from '../components/LoginForm';
-import { AuthContext } from '../context/AuthContext';
+import { useAuthContext} from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 
 export const LoginPage = () => {
     const navigate = useNavigate();
-   const { loginUser } = useContext(AuthContext);
+   const { loginUser } = useAuthContext();
     const {register, handleSubmit, formState: { errors }} = useForm();
     const onSubmit = handleSubmit(async (valor) => {
-        if(await loginUser(valor)){
+        const res = await loginUser(valor);
+        if  (res) {
             navigate('/misVehiculos');
         }
     });
