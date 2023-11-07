@@ -10,7 +10,7 @@ export const FormConsult = ({register,onSubmit}) => {
         >
             <div className="mb-3">
                 <label htmlFor="valor" className="form-label">
-                    Patente o DNI
+                    Patente
                 </label>
                 <input
                     type="text"

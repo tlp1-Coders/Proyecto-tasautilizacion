@@ -95,6 +95,9 @@ export const getVehicleForConsult = async (valor, id) => {
         },
         {
           model: Debts,
+          where: {
+            estadoDeuda: true
+          },
           attributes: ['id','periodoDeuda','year', 'montoDeuda', 'estadoDeuda'],
         }
       ]
@@ -108,3 +111,30 @@ export const getVehicleForConsult = async (valor, id) => {
     return false;
   };
 };
+
+export const getVehicleNotUser = async (valor) => {
+  try {
+    const vehicle = await Vehicles.findOne({
+      where: {
+        [Op.or]: [
+          { dominio: valor },
+        ]
+      },
+      attributes: ['id',  'idUser', 'tipoVehiculo', 'dominio', 'detalles'],
+      include: [
+        {
+          model: Debts,
+          attributes: [ 'estadoDeuda'],
+        }
+      ]
+    });
+  
+    if(!vehicle){
+      return false
+    }
+    return vehicle;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}

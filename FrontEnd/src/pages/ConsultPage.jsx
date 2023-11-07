@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { VehiclesConsult } from "../components/VehiclesConsult";
 import { FormConsult } from "../components/FormConsult";
-import { getvehicleRequest } from "../api/vehiclesRequests";
+import { getvehicleNotUserRequest } from "../api/vehiclesRequests";
+import { NotUserVehicleConsult } from "../components/NotUserVehicleConsult";
 export const ConsultPage = () => {
   const { register, handleSubmit } = useForm();
-  const [vehicle, setVehicle] = useState([]);
+  const [vehicle, setVehicle] = useState(null);
   const onSubmit = handleSubmit(async (valor) =>{
-    const vehicleData = await getvehicleRequest(valor)
+    const vehicleData = await getvehicleNotUserRequest(valor)
     setVehicle(vehicleData)
   }
   );
+  console.log(vehicle);
   return (
     <>
-      {vehicle.length>0 ? (
+      {vehicle ? (
         <div className="container text-center my-1 d-flex justify-content-center align-items-center ">
           <div className="row justify-content-center aling-items-center ">
             <main className=" col-8">
-              { <VehiclesConsult vehicle={vehicle} /> }
+              { <NotUserVehicleConsult vehicle={vehicle} /> }
             </main>
             <aside className=" col-4">
               <FormConsult onSubmit={onSubmit} register={register} />
