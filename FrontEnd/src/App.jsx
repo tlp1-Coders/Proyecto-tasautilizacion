@@ -11,7 +11,7 @@ import { UpdatePasswordPage } from './pages/UpdatePasswordPage.jsx';
 import { Footer } from './components/Footer.jsx';
 import { PaymentAprovedPage } from './pages/PaymentAprovedPage';
 import { MyVheiclesPage } from './pages/MyVheiclesPage';
-import { TestNavBar } from './components/TestNavBar.jsx';
+import { TestNavBar } from './components/NavBar/TestNavBar.jsx';
 
 function App() {
   return (

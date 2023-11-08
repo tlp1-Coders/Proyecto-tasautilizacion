@@ -1,15 +1,27 @@
-import { createTheme} from '@mui/material/styles';
-import { createContext } from 'react';
 
+// import { ThemeProvider, createTheme } from "@mui/material"
+// //theme provider material ui
+// const theme = createTheme({
+//     palette: {
+//         primary: {
+//             light: '#757ce8',
+//             main: '#3f50b5',
+//             dark: '#002884',
+//             contrastText: '#fff',
+//         },
+//         secondary: {
+//             light: '#ff7961',
+//             main: '#f44336',
+//             dark: '#ba000d',
+//             contrastText: '#000',
+//         },
+//     },
+// })
 
-const ThemeContext = createContext();
-
-export const ThemeContextProvider = ({ children }) => {
-    const defaultTheme = createTheme();
-
-    return (
-        <ThemeContext.Provider theme={defaultTheme}>
-            {children}
-        </ThemeContext.Provider>
-    );
-}
+// export const ThemeContext = ({ children }) => {
+//     return (
+//         <ThemeProvider theme={theme}>
+//             {children}
+//         </ThemeProvider>
+//     )
+// }

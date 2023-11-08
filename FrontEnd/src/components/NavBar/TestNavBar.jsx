@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -8,45 +8,40 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { AuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
+import { UserToggle } from "./UserToggle";
+
 
 const pages = [{name:"Inicio", path:"/"}, { name: "Consultas", path: "/consultas" }];
 const settings = [
   { name: "Mis Vehiculos", path: "/misVehiculos" },
   { name: "Cambiar Contraseña", path: "#" },
 ];
+const session = [
+  { name: "Iniciar Sesión", path: "/ingresar" },
+  { name: "Registrarse", path: "/registro" },
+];
+
 
 export const TestNavBar = () => {
-  const { logout, token, user } = useContext(AuthContext);
-  const handleLogOut = () => {
-    logout();
-    navigate("/");
-  };
+  const {token}= useAuthContext();
+
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
+ 
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
+  
   return (
-    <AppBar position="static">
+    <AppBar position="static"  >
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Typography
@@ -65,7 +60,7 @@ export const TestNavBar = () => {
                 alt=""
                 className="logo-nav me-2"
               />
-              Fermosa
+              Fermoza
             </RouterLink>
           </Typography>
 
@@ -143,83 +138,12 @@ export const TestNavBar = () => {
             ))}
           </Box>
           {token ? (
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-              <IconButton
-                onClick={handleOpenUserMenu}
-                size="small"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-              >
-                {user}
-                <AccountCircle />
-             
-              </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting,index) => (
-                  <MenuItem key={index} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">
-                      <RouterLink   className="dropdown-item"  to={setting.path}>
-                        {setting.name}
-                      </RouterLink>
-                    </Typography>
-                  </MenuItem>
-                ))} 
-                <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">
-                <Button variant="text" onClick={handleLogOut}>Cerrar Sesión</Button>
-                </Typography>
-                </MenuItem>
-              </Menu>
-            </Box>
-          ) : (
-            <Menu
-            sx={{ mt: "45px" }}
-            id="menu-appbar"
-            anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
-          >
-            <MenuItem onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">
-              <RouterLink className="dropdown-item" to="/ingresar">
-                Ingresar
-              </RouterLink>
-              <RouterLink className="dropdown-item" to="/registro">
-                Registro
-              </RouterLink>
-            </Typography>
-            </MenuItem>
-          </Menu>
-
-          )}
+            <UserToggle Pages={settings} />
+          ) :
+            (
+              <UserToggle Pages={session} />
+            )
+          }
         </Toolbar>
       </Container>
     </AppBar>
