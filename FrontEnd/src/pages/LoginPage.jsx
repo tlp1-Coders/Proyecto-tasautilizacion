@@ -18,7 +18,7 @@ export const LoginPage = () => {
 
     return (
         <>
-        <main className="container text-center d-flex flex-column justify-content-center align-items-center my-5">
+        <main className="container text-center d-flex flex-column justify-content-center align-items-center">
                 <LoginForm onSubmit={onSubmit} register={register} errors={errors}/>
         </main>
 
