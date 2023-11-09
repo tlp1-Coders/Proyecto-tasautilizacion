@@ -121,7 +121,7 @@ export const TestNavBar = () => {
                 alt=""
                 className="logo-nav me-2"
               />
-              Fermosa
+              Fermoza
             </RouterLink>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
