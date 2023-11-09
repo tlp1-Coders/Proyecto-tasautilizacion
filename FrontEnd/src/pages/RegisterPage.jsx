@@ -15,7 +15,7 @@ export const RegisterPage = () => {
     })
     return (
         <>
-            <main className="container text-center d-flex justify-content-center aling-items-center">
+            <main className="container text-center d-flex flex-column justify-content-center align-items-center">
                 <RegisterForm onSubmit={onSubmit} register={register} errors={errors} getValues={getValues}/>
             </main>
 

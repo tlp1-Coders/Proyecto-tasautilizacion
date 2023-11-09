@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 export const RegisterForm = ({ register, onSubmit, errors, getValues }) => {
   const defaultTheme = createTheme();
   return (
@@ -146,6 +147,7 @@ export const RegisterForm = ({ register, onSubmit, errors, getValues }) => {
         >
           <CssBaseline />
           <Box
+            
             sx={{
               margin: 1,
               display: "flex",
@@ -157,128 +159,149 @@ export const RegisterForm = ({ register, onSubmit, errors, getValues }) => {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Iniciar Sesión
+              Registrarse
             </Typography>
-            <Box component="form" onSubmit={onSubmit} sx={{ mt: 1 }}>
-              <TextField
-                variant="filled"
-                margin="normal"
-                fullWidth
-                id="nombreApellido"
-                label="Nombre y Apellido"
-                name="nombreApellido"
-                autoComplete="nombreApellido"
-                autoFocus
-                helperText={
-                  errors.nombreApellido && (
-                    <p className="text-danger">
-                      El nombre y apellido es obligatorio
-                    </p>
-                  )
-                }
-                {...register("nombreApellido", {
-                  required: true,
-                })}
-              />
-              <TextField
-                variant="filled"
-                margin="normal"
-                fullWidth
-                id="dni"
-                label="DNI"
-                name="dni"
-                autoComplete="dni"
-                autoFocus
-                helperText={
-                  errors.dni && (
-                    <p className="text-danger">El dni debe ser de 8 digitos</p>
-                  )
-                }
-                {...register("dni", {
-                  required: true,
-                  minLength: 8,
-                  maxLength: 8,
-                })}
-              />
-              <TextField
-                variant="filled"
-                margin="normal"
-                fullWidth
-                id="usuario"
-                label="Usuario"
-                name="usuario"
-                autoComplete="usuario"
-                autoFocus
-                helperText={
-                  errors.usuario && (
-                    <p className="text-danger">El usuario es obligatorio</p>
-                  )
-                }
-                {...register("usuario", {
-                  required: true,
-                })}
-              />
-              <TextField
-                variant="filled"
-                margin="normal"
-                fullWidth
-                id="email"
-                label="Email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                autoFocus
-                helperText={
-                  errors.email && (
-                    <p className="text-danger">El email es obligatorio</p>
-                  )
-                }
-                {...register("email", {
-                  required: true,
-                })}
-              />
-              <TextField
-                variant="filled"
-                margin="normal"
-                fullWidth
-                name="password"
-                label="Contraseña"
-                type="password"
-                id="password"
-                helperText={
-                  errors.password && (
-                    <p className="text-danger">La contraseña es obligatoria</p>
-                  )
-                }
-                autoComplete="current-password"
-                {...register("password", {
-                  required: true,
-                })}
-              />
-              <TextField
-                variant="filled"
-                margin="normal"
-                fullWidth
-                name="confirmPassword"
-                label="Confirmar Contraseña"
-                type="password"
-                id="confirmPassword"
-                helperText={
-                  errors.confirmPassword && (
-                    <p className="text-danger">Las contraseñas no coinciden</p>
-                  )
-                }
-                autoComplete="confirmPassword"
-                {...register("confirmPassword", {
-                  required: true,
-                  validate: (value) => value === getValues("password"),
-                })}
-              />
-              <Button type="submit" variant="outlined">
-                Ingresar
-              </Button>
-
-            </Box>
+            {/* <Box component="form" onSubmit={onSubmit} sx={{ mt: 1 }}> */}
+              <Grid component="form" onSubmit={onSubmit} container spacing={1}>
+                <Grid item xs={12} sm={6} md={6} lg={6} xl={6} xxl={6}>
+                  <TextField
+                    variant="filled"
+                    margin="normal"
+                    fullWidth
+                    id="nombreApellido"
+                    label="Nombre y Apellido"
+                    name="nombreApellido"
+                    autoComplete="nombreApellido"
+                    autoFocus
+                    helperText={
+                      errors.nombreApellido && (
+                        <p className="text-danger">
+                          El nombre y apellido es obligatorio
+                        </p>
+                      )
+                    }
+                    {...register("nombreApellido", {
+                      required: true,
+                    })}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} lg={6} xl={6} xxl={6}>
+                  <TextField
+                    variant="filled"
+                    margin="normal"
+                    fullWidth
+                    id="dni"
+                    label="DNI"
+                    name="dni"
+                    autoComplete="dni"
+                    autoFocus
+                    helperText={
+                      errors.dni && (
+                        <p className="text-danger">
+                          El dni debe ser de 8 digitos
+                        </p>
+                      )
+                    }
+                    {...register("dni", {
+                      required: true,
+                      minLength: 8,
+                      maxLength: 8,
+                    })}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} lg={6} xl={6} xxl={6}>
+                  <TextField
+                    variant="filled"
+                    margin="normal"
+                    fullWidth
+                    id="usuario"
+                    label="Usuario"
+                    name="usuario"
+                    autoComplete="usuario"
+                    autoFocus
+                    helperText={
+                      errors.usuario && (
+                        <p className="text-danger">El usuario es obligatorio</p>
+                      )
+                    }
+                    {...register("usuario", {
+                      required: true,
+                    })}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} lg={6} xl={6} xxl={6}>
+                  <TextField
+                    variant="filled"
+                    margin="normal"
+                    fullWidth
+                    id="email"
+                    label="Email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    autoFocus
+                    helperText={
+                      errors.email && (
+                        <p className="text-danger">El email es obligatorio</p>
+                      )
+                    }
+                    {...register("email", {
+                      required: true,
+                    })}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} lg={6} xl={6} xxl={6}>
+                  <TextField
+                    variant="filled"
+                    margin="normal"
+                    fullWidth
+                    name="password"
+                    label="Contraseña"
+                    type="password"
+                    id="password"
+                    helperText={
+                      errors.password && (
+                        <p className="text-danger">
+                          La contraseña es obligatoria
+                        </p>
+                      )
+                    }
+                    autoComplete="current-password"
+                    {...register("password", {
+                      required: true,
+                    })}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} lg={6} xl={6} xxl={6}>
+                  <TextField
+                    variant="filled"
+                    margin="normal"
+                    fullWidth
+                    name="confirmPassword"
+                    label="Confirmar Contraseña"
+                    type="password"
+                    id="confirmPassword"
+                    helperText={
+                      errors.confirmPassword && (
+                        <p className="text-danger">
+                          Las contraseñas no coinciden
+                        </p>
+                      )
+                    }
+                    autoComplete="confirmPassword"
+                    {...register("confirmPassword", {
+                      required: true,
+                      validate: (value) => value === getValues("password"),
+                    })}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
+                  <Button type="submit" variant="outlined">
+                    Registrarse
+                  </Button>
+                </Grid>
+              </Grid>
+            {/* </Box> */}
           </Box>
         </Container>
       </ThemeProvider>
