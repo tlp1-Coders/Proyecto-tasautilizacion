@@ -26,7 +26,7 @@ const session = [
 
 
 export const TestNavBar = () => {
-  const {token}= useAuthContext();
+  const {authState}= useAuthContext();
 
   const [anchorElNav, setAnchorElNav] = useState(null);
  
@@ -137,7 +137,7 @@ export const TestNavBar = () => {
               </Button>
             ))}
           </Box>
-          {token ? (
+          {authState.isAuth ? (
             <UserToggle Pages={settings} />
           ) :
             (

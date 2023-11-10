@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 export const UserToggle = ({Pages }) => {
   const navigate= useNavigate();
- const { user, token, logout }= useAuthContext();
+ const { authState, logout }= useAuthContext();
   const handleLogOut = () => {
     logout();
     navigate("/");
@@ -36,8 +36,8 @@ export const UserToggle = ({Pages }) => {
           aria-haspopup="true"
           color="inherit"
         >
-          {token?user:'Ingresar'}
-          <AccountCircle />
+          {authState.isAuth ? authState.user :'Ingresar'}
+          <AccountCircle sx={{ml:1}} />
         </IconButton>
       </Tooltip>
       <Menu
@@ -65,7 +65,7 @@ export const UserToggle = ({Pages }) => {
             </Typography>
           </MenuItem>
         ))}
-        {token && (
+        {authState.isAuth && (
             <MenuItem onClick={handleCloseUserMenu}>
             <Typography textAlign="center">
               <Button variant="text" onClick={handleLogOut}>
