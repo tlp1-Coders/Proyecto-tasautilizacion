@@ -1,8 +1,8 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useReducer } from "react";
 import { loginRequest } from "../api/LoginRequests";
 import { registerRequest } from "../api/RegisterRequests";
 import { getUserInfoByToken } from "../api/UserTokenRequests";
-
+import { authReducer } from '../reduces/AuthReducer';
 export const AuthContext = createContext();
 export const useAuthContext = () => useContext(AuthContext)
 
@@ -16,8 +16,10 @@ export const AuthContextProvider = ({ children }) => {
           localStorage.removeItem("token");
           setToken(null);
           setUser(null);
+          dispatch({ type: "LOGOUT_USER", payload: { user: null, token: null} });
         }
         setUser(data.user.nombreApellido);
+        dispatch({ type: "LOGIN_USER", payload: { user: data.user.nombreApellido, token: token} });
       });
     };
     
@@ -29,6 +31,7 @@ export const AuthContextProvider = ({ children }) => {
       localStorage.setItem("token", res.token);
       setToken(res.token);
       setUser(res.user.nombreApellido);
+      dispatch({ type: "LOGIN_USER", payload: { user: res.user.nombreApellido, token: res.token} });
       return true;
     }
   };
@@ -38,6 +41,7 @@ export const AuthContextProvider = ({ children }) => {
       localStorage.setItem("token", res.token);
       setToken(res.token);
       setUser(res.user.nombreApellido);
+      dispatch({ type: "REGISTER_USER", payload: { user: res.user.nombreApellido, token: res.token} });
       return true;
     }
   };
@@ -45,11 +49,13 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.removeItem("token");
     setToken(null);
     setUser(null);
+    dispatch({ type: "LOGOUT_USER" });
   };
+  const [state, dispatch] = useReducer(authReducer,[]);
 
   return (
     <AuthContext.Provider
-      value={{ loginUser, RegisterUser, logout, user, token, useAuthContext }}
+      value={{ loginUser, RegisterUser, logout, user, token, useAuthContext, state, dispatch }}
     >
       {children}
     </AuthContext.Provider>
