@@ -14,6 +14,7 @@ import { MyVheiclesPage } from "./pages/MyVheiclesPage";
 import { TestNavBar } from "./components/NavBar/TestNavBar.jsx";
 import { PrivateRoute } from "../src/router/PrivateRoutes.jsx";
 import { NotFoundPage } from "./pages/NotFoundPage.jsx";
+import { CommentsPages } from "./pages/CommentsPages.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/ingresar" element={<LoginPage />} />
         <Route path="/registro" element={<RegisterPage />} />
         <Route path="/" element={<PrivateRoute />}>
+          <Route path="/comentarios" element={<CommentsPages />} />
           <Route path="/misVehiculos" element={<MyVheiclesPage />} />
           <Route path="/pagos/:id" element={<PaymentPage />} />
           <Route path="/forgotPassword" element={<PasswordPage />} />

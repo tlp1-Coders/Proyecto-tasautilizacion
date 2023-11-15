@@ -14,7 +14,7 @@ import { useAuthContext } from "../../context/AuthContext";
 import { UserToggle } from "./UserToggle";
 
 
-const pages = [{name:"Inicio", path:"/"}, { name: "Consultas", path: "/consultas" }];
+const pages = [{name:"Inicio", path:"/"}, { name: "Consultas", path: "/consultas" }, {name: "Comentarios", path: "/comentarios"}];
 const settings = [
   { name: "Mis Vehiculos", path: "/misVehiculos" },
   { name: "Cambiar Contraseña", path: "#" },
