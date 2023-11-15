@@ -59,11 +59,13 @@ export const paymentPutRequest =  async(mpOrder) => {
 };
 
 export const MPCreateOrderRequest =  async(mpOrder) => {
+    const token = localStorage.getItem('token');
     try {
         const response = await fetch('http://localhost:4000/mp/createOrder', {
             method:'POST',
             headers:{
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': token
             },
             body: JSON.stringify(mpOrder)
         })
