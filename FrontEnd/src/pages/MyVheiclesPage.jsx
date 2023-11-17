@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { VehiclesConsult } from "../components/VehiclesConsult";
 import { getvehicleRequest } from "../api/vehiclesRequests";
+import { Box, Container, Typography } from "@mui/material";
+
 export const MyVheiclesPage = () => {
   const navigate = useNavigate();
 
@@ -12,18 +14,31 @@ export const MyVheiclesPage = () => {
     });
   }, []);
   return (
-    <>
-      {
-        <main className="w-100 p-3 container d-flex flex-column justify-content-center align-items-center ">
-          {vehicle.length>0 ? (
-            <VehiclesConsult vehicle={vehicle} />
-          ) : (
-            <section className="d-flex justify-content-center align-items-center border border-black rounded mt-2 p-2 shadow h-75 w-75">
-              <h1 className="card-title">No tienes vehiculos</h1>
-            </section>
-          )}
-        </main>
-      }
-    </>
+    <Box sx={{ flexGrow: 1,  marginBottom:1}}>
+      <Container maxWidth="md">
+        {vehicle.length > 0 ? (
+          <VehiclesConsult vehicle={vehicle} />
+        ) : (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              border: "1px solid black",
+              borderRadius: "8px",
+              mt: 2,
+              p: 2,
+              boxShadow: 2,
+              height: "75%",
+              width: "75%",
+            }}
+          >
+            <Typography variant="h4" component="h1">
+              No tienes vehiculos
+            </Typography>
+          </Box>
+        )}
+      </Container>
+    </Box>
   );
 };

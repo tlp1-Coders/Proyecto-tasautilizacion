@@ -6,6 +6,7 @@ import {
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { TextField, Button, Typography, Box, Container } from "@mui/material";
 
 export const PaymentForm = () => {
   const { register, handleSubmit } = useForm();
@@ -32,28 +33,46 @@ export const PaymentForm = () => {
   }, [id]);
 
   return (
-    <>
-      <form
+    <Container maxWidth="sm" >
+      <Box
+        component="form"
         id="form"
-        className="d-flex flex-column justify-content-center align-items-center mt-5 border rounded bg-body-tertiary p-5 shadow"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          opacity: 0.9,
+          borderRadius: "10px",
+          boxShadow:15,
+          mt: 5,
+          border: 1,
+          bgcolor: "background.paper",
+          p: 5,
+          boxShadow: 1,
+        }}
+        container="true"
         onSubmit={handleSubmit(hanldeOnsubmit)}
       >
-        <h1 className="form-label">{debt.vehicle?.tipoVehiculo}</h1>
-        <h2 className="form-label">{debt.vehicle?.dominio}</h2>
-        <h4>Periodos Adeudados: {debt.periodoDeuda}</h4>
-        <h4>Monto Total: {debt.montoDeuda}</h4>
-        <label className="form-label" htmlFor="periodo">
-          Periodos a pagar
-        </label>
-        <input
+        <Typography variant="h4" component="h1" gutterBottom>
+          {debt.vehicle?.tipoVehiculo}
+        </Typography>
+        <Typography variant="h5" component="h2" gutterBottom>
+          {debt.vehicle?.dominio}
+        </Typography>
+        <Typography variant="h6" gutterBottom>
+          Periodos Adeudados: {debt.periodoDeuda}
+        </Typography>
+        <Typography variant="h6" gutterBottom>
+          Monto Total: {debt.montoDeuda}
+        </Typography>
+        <TextField
+          label="Periodos a pagar"
           type="text"
-          className="form-control"
           name="periodo"
-          required
-          {...register("periodo", { min: 1, max: debt.periodoDeuda })}
+          inputProps={{ required: true, min: 1, max: debt.periodoDeuda }}
+          {...register("periodo")}
         />
-        
-        <div>
+        <Box sx={{ mt: 3 }}>
           {preferenceId ? (
             <Wallet
               initialization={{
@@ -67,11 +86,13 @@ export const PaymentForm = () => {
                 redirectMode: "modal",
               }}
             />
-          ):(
-            <button className="btn btn-primary mt-3">Generar Pago</button>
+          ) : (
+            <Button variant="contained" type="submit" >
+              Generar Pago
+            </Button>
           )}
-        </div>
-      </form>
-    </>
+        </Box>
+      </Box>
+    </Container>
   );
 };

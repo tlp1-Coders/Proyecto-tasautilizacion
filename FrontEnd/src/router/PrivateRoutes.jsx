@@ -6,7 +6,7 @@ export const PrivateRoute = () => {
     const { authState } = useAuthContext();
 
     return (
-        authState.isAuth ?(
+        authState.token ?(
             <Outlet />
         ):(
             <Navigate to="/ingresar" />

@@ -1,27 +1,43 @@
-import React, { useState } from 'react'
+import { Card, CardHeader, CardContent, Typography, Grid } from "@mui/material";
 
-export const NotUserVehicleConsult = ({vehicle}) => {
-  const hasDebt = vehicle.debts.some(element => element.estadoDeuda === true);
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+export const NotUserVehicleConsult = ({ vehicle }) => {
+  const hasDebt = vehicle.debts.some((element) => element.estadoDeuda === true);
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: hasDebt ? "#f44336" : "#4caf50",
+      },
+    },
+  });
 
   return (
-    <section className="row justify-content-center aling-items-center bg-body-secondary bg-opacity-75 text-center border rounded mt-2 p-2 shadow">
-      <div key={vehicle.id} className="card col-12 ">
-        <div className="card-header bg-transparent">
-          <h5 className="card-title">{vehicle.tipoVehiculo}</h5>
-          <h6 className="card-subtitle">{vehicle.dominio}</h6>
-        </div>
-        <div className="card-body row justify-content-center">
-          {hasDebt ? (
-            <p>
-              <strong>Posee una deuda</strong>
-            </p>
-          ) : (
-            <p>
-              <strong>No posee deudas</strong>
-            </p>
-          )}
-        </div>
-      </div>
-    </section>
+    <ThemeProvider theme={theme}>
+      <Card
+        sx={{
+          backgroundColor: "white",
+          opacity: 0.9,
+          borderRadius: "10px",
+          boxShadow: 15,
+          textAlign: "center",
+        }}
+      >
+        <CardHeader title={vehicle.tipoVehiculo} subheader={vehicle.dominio} />
+        <CardContent>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Typography variant="h6" component="h6" align="center">
+                {hasDebt ? (
+                  <strong>Posee deuda</strong>
+                ) : (
+                  <strong>No posee deuda</strong>
+                )}
+              </Typography>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+    </ThemeProvider>
   );
-}
+};

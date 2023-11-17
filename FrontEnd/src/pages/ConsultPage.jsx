@@ -3,33 +3,35 @@ import { useForm } from "react-hook-form";
 import { FormConsult } from "../components/FormConsult";
 import { getvehicleNotUserRequest } from "../api/vehiclesRequests";
 import { NotUserVehicleConsult } from "../components/NotUserVehicleConsult";
+import { Box, Container, Grid, Typography } from "@mui/material";
+
+
 export const ConsultPage = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState:{errors} } = useForm();
   const [vehicle, setVehicle] = useState(null);
   const onSubmit = handleSubmit(async (valor) =>{
     const vehicleData = await getvehicleNotUserRequest(valor)
     setVehicle(vehicleData)
-  }
-  );
-  console.log(vehicle);
+  });
+
   return (
-    <>
-      {vehicle ? (
-        <div className="container text-center my-1 d-flex justify-content-center align-items-center ">
-          <div className="row justify-content-center aling-items-center ">
-            <main className=" col-8">
-              { <NotUserVehicleConsult vehicle={vehicle} /> }
-            </main>
-            <aside className=" col-4">
-              <FormConsult onSubmit={onSubmit} register={register} />
-            </aside>
-          </div>
-        </div>
-      ) : (
-        <main className="container d-flex flex-column justify-content-center align-items-center text-center ">
-          <FormConsult onSubmit={onSubmit} register={register} />
-        </main>
-      )}
-    </>
+    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <Container maxWidth='sm'>
+        <Grid container spacing={2}  >
+            {vehicle ? (
+              <>
+            <Grid item xs={12} md={12} >
+              <FormConsult onSubmit={onSubmit} register={register} errors={errors} />
+            </Grid>
+            <Grid item xs={12} md={12}>
+              <NotUserVehicleConsult vehicle={vehicle} />
+            </Grid>
+              </>
+            ) : (
+              <FormConsult onSubmit={onSubmit} register={register} errors={errors} />
+            )}
+          </Grid>
+      </Container>
+    </Box>
   );
 };
