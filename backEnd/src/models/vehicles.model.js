@@ -95,9 +95,6 @@ export const getVehicleForConsult = async (valor, id) => {
         },
         {
           model: Debts,
-          where: {
-            estadoDeuda: true
-          },
           attributes: ['id','periodoDeuda','year', 'montoDeuda', 'estadoDeuda'],
         }
       ]
