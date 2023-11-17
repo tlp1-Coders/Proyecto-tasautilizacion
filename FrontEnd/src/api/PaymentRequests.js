@@ -1,6 +1,6 @@
 export const paymentGetRequest =  async(id) => {
     try {
-        const response = await fetch(`http://localhost:4000/api/debts/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_BACK_URL}/api/debts/${id}`, {
             method:'GET',
             headers:{
                 'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ export const paymentGetRequest =  async(id) => {
 };
 export const paymentPutRequest =  async(mpOrder) => {
     try {
-        const response = await fetch(`http://localhost:4000/api/debts`, {
+        const response = await fetch(`${import.meta.env.VITE_BACK_URL}/api/debts`, {
             method:'PUT',
             headers:{
                 'Content-Type': 'application/json'

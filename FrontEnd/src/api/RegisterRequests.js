@@ -1,7 +1,7 @@
 export const registerRequest =  async(valor) => {
 
    try {
-    const response = await fetch('http://localhost:4000/api/auth/new', {
+    const response = await fetch(`${import.meta.env.VITE_BACK_URL}/api/auth/new`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

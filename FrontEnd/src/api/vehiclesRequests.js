@@ -4,7 +4,7 @@ export const getvehicleRequest = async (valor) => {
     if (!authorization) {
        return null
     }
-    const response = await fetch('http://localhost:4000/api/vehicles', {
+    const response = await fetch(`${import.meta.env.VITE_BACK_URL}/api/vehicles`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export const getvehicleRequest = async (valor) => {
 export const getvehicleNotUserRequest = async ({valor}) => {
 
 
-    const response = await fetch('http://localhost:4000/api/vehicles/vehicleNotUser', {
+    const response = await fetch(`${import.meta.env.VITE_BACK_URL}/api/vehicles/vehicleNotUser`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
