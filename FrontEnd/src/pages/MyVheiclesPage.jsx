@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { VehiclesConsult } from "../components/VehiclesConsult";
 import { getvehicleRequest } from "../api/vehiclesRequests";
 import { Box, Container, Typography } from "@mui/material";
+import Loading from "../components/Loading";
 
 export const MyVheiclesPage = () => {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ export const MyVheiclesPage = () => {
     });
   }, []);
   return (
+
+    vehicle.length === 0 ? (<Loading/>) : (
     <Box sx={{ flexGrow: 1,  marginBottom:1}}>
       <Container maxWidth="md">
         {vehicle.length > 0 ? (
@@ -40,5 +43,6 @@ export const MyVheiclesPage = () => {
         )}
       </Container>
     </Box>
+  )
   );
 };
