@@ -48,7 +48,6 @@ export const PaymentForm = () => {
           border: 1,
           bgcolor: "background.paper",
           p: 5,
-          boxShadow: 1,
         }}
         container="true"
         onSubmit={handleSubmit(hanldeOnsubmit)}

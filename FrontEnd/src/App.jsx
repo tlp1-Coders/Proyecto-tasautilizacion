@@ -25,15 +25,15 @@ function App() {
         <Route path="/consultas" element={<ConsultPage />} />
         <Route path="/ingresar" element={<LoginPage />} />
         <Route path="/registro" element={<RegisterPage />} />
+        <Route path="/forgotPassword" element={<PasswordPage />} />
+        <Route path="/updatePassword" element={<UpdatePasswordPage />} />4
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/comentarios" element={<CommentsPages />} />
           <Route path="/misVehiculos" element={<MyVheiclesPage />} />
           <Route path="/pagos/:id" element={<PaymentPage />} />
-          <Route path="/forgotPassword" element={<PasswordPage />} />
-          <Route path="/updatePassword" element={<UpdatePasswordPage />} />4
           <Route path="/mp/success" element={<PaymentAprovedPage />} />
         </Route>
-        <Route path="*" element={<NotFoundPage/>} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </>
