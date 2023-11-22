@@ -36,7 +36,7 @@ export const UserToggle = ({Pages }) => {
           aria-haspopup="true"
           color="inherit"
         >
-          {authState.isAuth ? authState.user :'Ingresar'}
+          {authState.isAuth ? authState.user.nombreApellido.substring(0, 8) : 'Ingresar'}
           <AccountCircle sx={{ml:1}} />
         </IconButton>
       </Tooltip>
