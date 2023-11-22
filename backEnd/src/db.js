@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize';
 
+
 export const sequelize= new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USER,
@@ -12,6 +13,7 @@ export const sequelize= new Sequelize(
 export const connectDB= async()=>{
     try {
         await sequelize.sync({force: false});
+        
         console.log(`DB CONNECTED`);
     } catch (error) {
         console.log('Error Conecting',error);

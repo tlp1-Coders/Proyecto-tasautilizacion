@@ -1,4 +1,5 @@
 import express from 'express';
+import {createServer} from 'node:http';
 import morgan from 'morgan';
 import cors from 'cors';
 import 'dotenv/config';
@@ -8,9 +9,13 @@ import authRouter from './routes/auth.routes.js';
 import vehiclesRouter from './routes/vehicles.routes.js';
 import { payMentRoutes } from './routes/payment.routes.js';
 import debtsRoutes from './routes/debts.routes.js';
+import commentsRoutes from './routes/comments.routes.js';
+import { socketService } from './services/socketService.js';
 
 
 const app = express();
+const httpServer = createServer(app);
+socketService(httpServer);
 const port = process.env.PORT || 3000;
 
 //middlewares
@@ -23,11 +28,12 @@ app.use(cors());
 app.use('/api/auth', authRouter);
 app.use('/api/vehicles', vehiclesRouter);
 app.use('/api/debts', debtsRoutes);
+app.use('/api/comments', commentsRoutes);
 app.use('/mp',payMentRoutes)
-await connectDB();
+connectDB();
 relations();
 
 
-app.listen(port, () => {
+httpServer.listen(port, () => {
     console.log(`Server on http://localhost:${port}`);
 })

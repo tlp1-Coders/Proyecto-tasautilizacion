@@ -3,6 +3,7 @@ import { loginRequest } from "../api/LoginRequests";
 import { registerRequest } from "../api/RegisterRequests";
 import { getUserInfoByToken } from "../api/UserTokenRequests";
 import { authReducer } from '../reduces/AuthReducer';
+import useLoader from "../hooks/useLoader";
 export const AuthContext = createContext();
 export const useAuthContext = () => useContext(AuthContext)
 
@@ -11,8 +12,9 @@ export const AuthContextProvider = ({ children }) => {
   // const [token, setToken] = useState(localStorage.getItem("token"));
   const token = localStorage.getItem("token")
   const [authState, dispatch] = useReducer(authReducer,{token});
-
+  const {   isLoading,showLoader,hideLoader,}=useLoader();
   useEffect(() => {
+    showLoader();
     if (authState.token) {
       getUserInfoByToken(authState.token).then((data) => {
         if (!data) {
@@ -22,11 +24,12 @@ export const AuthContextProvider = ({ children }) => {
           dispatch({ type: "LOGOUT_USER"});
         }
         // setUser(data.user.nombreApellido);
-        dispatch({ type: "LOGIN_USER", payload: { user: data.user.nombreApellido, token: token} });
+        dispatch({ type: "LOGIN_USER", payload: { user: data.user, token: token} });
+        hideLoader();
       });
     };
-    
   }, [token]);
+
   const loginUser = async (valor) => {
     const res = await loginRequest(valor);
     if (res.token) {
@@ -57,7 +60,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ loginUser, RegisterUser, logout,  useAuthContext, authState, dispatch }}
+      value={{ loginUser, RegisterUser, logout,  useAuthContext, authState, dispatch, isLoading }}
     >
       {children}
     </AuthContext.Provider>
