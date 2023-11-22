@@ -93,6 +93,7 @@ export const CommentsPages = () => {
             sx={
               {
                 height:"50vh",
+                width:"80vh",
                 overflow:"scroll",
                 "&::-webkit-scrollbar": {
                   width: "0.4em",
