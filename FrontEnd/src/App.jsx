@@ -15,6 +15,7 @@ import { TestNavBar } from "./components/NavBar/TestNavBar.jsx";
 import { PrivateRoute } from "../src/router/PrivateRoutes.jsx";
 import { NotFoundPage } from "./pages/NotFoundPage.jsx";
 import { CommentsPages } from "./pages/CommentsPages.jsx";
+import { ChangePasswordPage } from "./pages/ChangePasswordPage.jsx";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/updatePassword" element={<UpdatePasswordPage />} />4
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/comentarios" element={<CommentsPages />} />
+          <Route path="/cambiarContraseña" element={<UpdatePasswordPage />} />
           <Route path="/misVehiculos" element={<MyVheiclesPage />} />
           <Route path="/pagos/:id" element={<PaymentPage />} />
           <Route path="/mp/success" element={<PaymentAprovedPage />} />

@@ -130,7 +130,7 @@ export const forgotPassword = async (req, res) => {
 
 export const resetForgotPassword = async (req, res) => {
     try {
-        const { id } = await verifyJWT(req.params.token);
+        const { id } = await verifyJWT(req.headers.authorization);
         const updatePasswod = await updateUser(id, req.body.password);
         
         if (!updatePasswod) {

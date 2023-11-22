@@ -30,13 +30,14 @@ export const sendPasswordResetRequest = async (valor) => {
       }
 }
 
-export const resetPassword = async (valor) => {
+export const resetPassword = async (valor, token) => {
     const response = await fetch(
-        `http://localhost:4000/api/auth/resetPassword/${token}`,
+        `http://localhost:4000/api/auth/resetPassword`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": token,
           },
           body: JSON.stringify(valor),
         }

@@ -10,5 +10,5 @@ authRouter.post('/new',userSchema,validateFields,newUser);
 authRouter.get('/user',getUserInfoByToken);
 authRouter.post('/login',loginUserSchema,validateFields, loginUser);
 authRouter.post('/forgotPassword',forgotPasswordSchema,validateFields, forgotPassword);
-authRouter.put('/resetPassword/:token',resetForgotPasswordSchema,validateFields, resetForgotPassword);
+authRouter.put('/resetPassword',resetForgotPasswordSchema,validateFields, resetForgotPassword);
 export default authRouter;

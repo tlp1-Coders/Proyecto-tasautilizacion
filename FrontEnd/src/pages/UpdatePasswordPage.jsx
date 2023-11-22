@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,14 +11,22 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { resetPassword } from "../api/PasswordRequests";
+import { useAuthContext } from "../context/AuthContext";
 
 export const UpdatePasswordPage = () => {
   const { register, handleSubmit, formState:{errors}, getValues  } = useForm();
+  const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const token = searchParams.get("token");
+  const {authState, logout}= useAuthContext();
+  const token = searchParams.get("token") || authState.token ;
   const onsubmit = async (valor) => {
-    await resetPassword(valor, token);
+   const data = await resetPassword(valor, token);
+   if(data){
+    logout();
+    navigate("/ingresar");
+    
+   }
   };
   const defaultTheme = createTheme();
   return (

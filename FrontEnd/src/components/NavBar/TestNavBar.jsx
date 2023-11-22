@@ -17,7 +17,7 @@ import { UserToggle } from "./UserToggle";
 const pages = [{name:"Inicio", path:"/"}, { name: "Consultas", path: "/consultas" }, {name: "Comentarios", path: "/comentarios"}];
 const settings = [
   { name: "Mis Vehiculos", path: "/misVehiculos" },
-  { name: "Cambiar Contraseña", path: "#" },
+  { name: "Cambiar Contraseña", path: "cambiarContraseña" },
 ];
 const session = [
   { name: "Iniciar Sesión", path: "/ingresar" },
