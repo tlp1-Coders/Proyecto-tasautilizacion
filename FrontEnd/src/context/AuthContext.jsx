@@ -14,7 +14,7 @@ export const AuthContextProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(authReducer,{token});
   const {   isLoading,showLoader,hideLoader,}=useLoader();
   useEffect(() => {
-    showLoader();
+    token ? showLoader() : hideLoader();
     if (authState.token) {
       getUserInfoByToken(authState.token).then((data) => {
         if (!data) {
@@ -22,6 +22,7 @@ export const AuthContextProvider = ({ children }) => {
           // setToken(null);
           // setUser(null);
           dispatch({ type: "LOGOUT_USER"});
+          hideLoader();
         }
         // setUser(data.user.nombreApellido);
         dispatch({ type: "LOGIN_USER", payload: { user: data.user, token: token} });

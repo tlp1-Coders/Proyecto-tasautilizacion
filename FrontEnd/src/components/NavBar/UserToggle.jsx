@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "../../context/AuthContext";
-import { Link as RouterLink, useNavigate,  } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -9,10 +9,11 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import Loading from "../Loading";
 
-export const UserToggle = ({Pages }) => {
-  const navigate= useNavigate();
- const { authState, logout }= useAuthContext();
+export const UserToggle = ({ Pages }) => {
+  const navigate = useNavigate();
+  const { authState, logout, isLoading } = useAuthContext();
   const handleLogOut = () => {
     logout();
     navigate("/");
@@ -26,55 +27,56 @@ export const UserToggle = ({Pages }) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 0 }}>
-      <Tooltip title="Open settings">
-        <IconButton
-          onClick={handleOpenUserMenu}
-          size="small"
-          aria-label="account of current user"
-          aria-controls="menu-appbar"
-          aria-haspopup="true"
-          color="inherit"
+    isLoading ? <Loading /> :
+      <Box sx={{ flexGrow: 0 }}>
+        <Tooltip title="Open settings">
+          <IconButton
+            onClick={handleOpenUserMenu}
+            size="small"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            {authState.isAuth ? authState.user?.nombreApellido?.substring(0, 8) : 'Ingresar'}
+            <AccountCircle sx={{ ml: 1 }} />
+          </IconButton>
+        </Tooltip>
+        <Menu
+          sx={{ mt: "45px" }}
+          id="menu-appbar"
+          anchorEl={anchorElUser}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorElUser)}
+          onClose={handleCloseUserMenu}
         >
-          {authState.isAuth ? authState.user.nombreApellido.substring(0, 8) : 'Ingresar'}
-          <AccountCircle sx={{ml:1}} />
-        </IconButton>
-      </Tooltip>
-      <Menu
-        sx={{ mt: "45px" }}
-        id="menu-appbar"
-        anchorEl={anchorElUser}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        keepMounted
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-        open={Boolean(anchorElUser)}
-        onClose={handleCloseUserMenu}
-      >
-        {Pages.map((setting, index) => (
-          <MenuItem key={index} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">
-              <RouterLink className="dropdown-item" to={setting.path}>
-                {setting.name}
-              </RouterLink>
-            </Typography>
-          </MenuItem>
-        ))}
-        {authState.isAuth && (
+          {Pages.map((setting, index) => (
+            <MenuItem key={index} onClick={handleCloseUserMenu}>
+              <Typography textAlign="center">
+                <RouterLink className="dropdown-item" to={setting.path}>
+                  {setting.name}
+                </RouterLink>
+              </Typography>
+            </MenuItem>
+          ))}
+          {authState.isAuth && (
             <MenuItem onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">
-              <Button variant="text" onClick={handleLogOut}>
-                Cerrar Sesión
-              </Button>
-            </Typography>
-          </MenuItem>
-        )}
-      </Menu>
-    </Box>
+              <Typography textAlign="center">
+                <Button variant="text" onClick={handleLogOut}>
+                  Cerrar Sesión
+                </Button>
+              </Typography>
+            </MenuItem>
+          )}
+        </Menu>
+      </Box>
   );
 };

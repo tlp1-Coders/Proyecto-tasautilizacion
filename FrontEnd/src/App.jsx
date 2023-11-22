@@ -16,10 +16,12 @@ import { PrivateRoute } from "../src/router/PrivateRoutes.jsx";
 import { NotFoundPage } from "./pages/NotFoundPage.jsx";
 import { CommentsPages } from "./pages/CommentsPages.jsx";
 import { useAuthContext } from "./context/AuthContext.jsx";
+import Loading from "./components/Loading.jsx";
 
 function App() {
   const {isLoading}=useAuthContext();
   return (
+    isLoading?<Loading/>:
     <>
       <TestNavBar />
       <Routes>

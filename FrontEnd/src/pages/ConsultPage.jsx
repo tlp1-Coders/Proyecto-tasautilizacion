@@ -4,9 +4,11 @@ import { FormConsult } from "../components/FormConsult";
 import { getvehicleNotUserRequest } from "../api/vehiclesRequests";
 import { NotUserVehicleConsult } from "../components/NotUserVehicleConsult";
 import { Box, Container, Grid, Typography } from "@mui/material";
-
+import { useAuthContext } from "../context/AuthContext";
+import Loading from "../components/Loading";
 
 export const ConsultPage = () => {
+  const {isLoading}=useAuthContext();
   const { register, handleSubmit, formState:{errors} } = useForm();
   const [vehicle, setVehicle] = useState(null);
   const onSubmit = handleSubmit(async (valor) =>{
@@ -15,6 +17,7 @@ export const ConsultPage = () => {
   });
 
   return (
+    isLoading? <Loading/>:
     <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
       <Container maxWidth='sm'>
         <Grid container spacing={2}  >

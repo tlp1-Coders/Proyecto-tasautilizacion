@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { Typography, Box } from '@mui/material';
 
 export const Footer = () => {
   return (
-    <footer className='footer p-2 text-center bg-body-tertiary bg-opacity-50'>
-      <p className='m-0 text-muted ' >Municipalidad de la Ciudad de Formosa - Provincia de Formosa - República Argentina</p>
-    </footer>
-  )
+    <Box component="footer" sx={{ padding: 1, textAlign: 'center', backgroundColor: 'rgba(0, 0, 0, 0.1)' }}>
+      <Typography variant="body2" color="textSecondary" component="p" sx={{ margin: 0 }}>
+        Municipalidad de la Ciudad de Formosa - Provincia de Formosa - República Argentina
+      </Typography>
+    </Box>
+  );
 }
