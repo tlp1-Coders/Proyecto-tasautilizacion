@@ -19,7 +19,7 @@ export const AuthContextProvider = ({ children }) => {
           localStorage.removeItem("token");
           // setToken(null);
           // setUser(null);
-          dispatch({ type: "LOGOUT_USER", payload: { user: null, token: null} });
+          dispatch({ type: "LOGOUT_USER"});
         }
         // setUser(data.user.nombreApellido);
         dispatch({ type: "LOGIN_USER", payload: { user: data.user.nombreApellido, token: token} });
@@ -43,7 +43,7 @@ export const AuthContextProvider = ({ children }) => {
       localStorage.setItem("token", res.token);
       // setToken(res.token);
       // setUser(res.user.nombreApellido);
-      dispatch({ type: "REGISTER_USER", payload: { user: res.user.nombreApellido, token: res.token} });
+      dispatch({ type: "LOGIN_USER", payload: { user: res.user.nombreApellido, token: res.token} });
       return true;
     }
   };

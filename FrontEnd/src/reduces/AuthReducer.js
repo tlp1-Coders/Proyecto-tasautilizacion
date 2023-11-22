@@ -16,13 +16,7 @@ export const authReducer = (authState, action) => {
                 user: null,
                 token: null,
             };
-        case authTypes.REGISTER_USER:
-            return {
-                ...authState,
-                isAuth: true,
-                user: action.payload.user,
-                token: action.payload.token
-            };
+
         default:
             return authState;
     }
