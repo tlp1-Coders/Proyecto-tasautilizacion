@@ -15,7 +15,6 @@ import { TestNavBar } from "./components/NavBar/TestNavBar.jsx";
 import { PrivateRoute } from "../src/router/PrivateRoutes.jsx";
 import { NotFoundPage } from "./pages/NotFoundPage.jsx";
 import { CommentsPages } from "./pages/CommentsPages.jsx";
-import { ChangePasswordPage } from "./pages/ChangePasswordPage.jsx";
 
 function App() {
   return (
