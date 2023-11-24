@@ -4,10 +4,11 @@ import { VehiclesConsult } from "../components/VehiclesConsult";
 import { getvehicleRequest } from "../api/vehiclesRequests";
 import { Box, Container, Typography } from "@mui/material";
 import Loading from "../components/Loading";
+import { useAuthContext } from "../context/AuthContext";
 
 export const MyVheiclesPage = () => {
   const navigate = useNavigate();
-
+  const {isLoading} = useAuthContext();
   const [vehicle, setVehicle] = useState([]);
   useEffect(() => {
     getvehicleRequest().then((vehicle) => {
@@ -16,7 +17,7 @@ export const MyVheiclesPage = () => {
   }, []);
   return (
 
-    vehicle.length === 0 ? (<Loading/>) : (
+    isLoading? (<Loading/>) : (
     <Box sx={{ flexGrow: 1,  marginBottom:1}}>
       <Container maxWidth="md">
         {vehicle.length > 0 ? (
