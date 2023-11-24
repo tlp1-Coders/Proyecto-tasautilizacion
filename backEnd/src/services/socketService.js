@@ -62,12 +62,12 @@ export const socketService = (server) => {
     //Actualizar un comentario
     socket.on('updateComment', async(id, comment) => {
         try {
-            const UpdateComment = await updateComment(id, socket.user.id, comment);
-            if (!UpdateComment) {
+            const updatedComment = await updateComment(id, socket.user.id, comment);
+            if (!updatedComment) {
                 socket.emit('error', 'No se pudo actualizar el comentario');
                 return;
             }
-            socket.emit('comment', UpdateComment);
+            socket.emit('comment', updatedComment);
         } catch (error) {
             console.log(error);
             socket.emit('error', 'No se pudo actualizar el comentario, error de servidor');
@@ -76,12 +76,12 @@ export const socketService = (server) => {
     //Eliminar un comentario
     socket.on('deleteComment', async(id) => {
         try {
-            const DeleteComment = await deleteComment(id, socket.user.id);
-            if (!DeleteComment) {
+            const deletedComment = await deleteComment(id, socket.user.id);
+            if (!deletedComment) {
                 socket.emit('error', 'No se pudo eliminar el comentario');
                 return;
             }
-            socket.emit('comment', DeleteComment);
+            socket.emit('comment', deletedComment);
         } catch (error) {
             console.log(error);
             socket.emit('error', 'No se pudo eliminar el comentario, error de servidor');
