@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState} from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Box,
   Typography,
@@ -6,9 +6,15 @@ import {
   Button,
   Container,
   Divider,
-  IconButton 
+  IconButton,
 } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
+
+const { EditIcon, DeleteIcon } = {
+  EditIcon: Edit,
+  DeleteIcon: Delete,
+};
+
 import io from "socket.io-client";
 import { useForm } from "react-hook-form";
 import { useAuthContext } from "../context/AuthContext";
@@ -31,17 +37,21 @@ export const CommentsPages = () => {
   );
 
   useEffect(() => {
-    socket.connect();
+    socket?.connect();
     socket.emit("allComments");
+    return () => {
+      console.log("desconectado");
+      socket.disconnect();
+    }
+  }, [socket])
+
+  useEffect(() => {
     socket.on("allComments", (comments) => {
       console.log(comments);
       setComments(comments);
     });
-
     return () => {
       socket.off("allComments");
-      console.log("desconectado");
-      socket.disconnect();
     };
   }, [socket]);
 
@@ -50,10 +60,21 @@ export const CommentsPages = () => {
       console.log(comment);
       setComments((prevComments) => [...prevComments, comment]);
     });
-
     return () => {
       socket.off("comment");
     };
+  }, [socket]);
+
+  useEffect(() => {
+    socket.on("deleteComment", (deleteComment) => {
+      setComments((prevComments) =>
+        prevComments.filter((comment) => comment.id !== deleteComment.id)
+      );
+    }
+    );
+    return () => {
+      socket.off("deleteComment");
+    }
   }, [socket]);
 
   const handleAddComment = (data) => {
@@ -64,12 +85,9 @@ export const CommentsPages = () => {
     }
   };
 
-  const handleDeleteComment = (e ) => { 
-    const id = e.target.id;
-    
-      socket.emit("deleteComment", id);
-      console.log(id);
-      
+  const handleDeleteComment = (id) => {
+    socket.emit("deleteComment", id);
+    setComments ((prevComments) => prevComments.filter((comment) => comment.id !== id));
   };
 
   return isLoading ? (
@@ -85,12 +103,12 @@ export const CommentsPages = () => {
       >
         <Box
           sx={{
-            p:1,
+            p: 1,
             backgroundColor: "white",
             opacity: 0.9,
             borderRadius: "10px",
             boxShadow: 15,
-            textAlign: "center", 
+            textAlign: "center",
           }}
         >
           <Typography variant="h5">Comentarios</Typography>
@@ -98,55 +116,67 @@ export const CommentsPages = () => {
           <Box
             mt={2}
             sx={{
-              height:"50vh",
-              width:"80vh",
-              overflow:"scroll",
+              height: "50vh",
+              width: "80vh",
+              overflow: "scroll",
               "&::-webkit-scrollbar": {
                 width: "0.4em",
               },
             }}
           >
-            {comments.map((comment) => (
-              <Box
-                key={comment.id}
-                sx={{
-                  display: "flex",
-                  flexDirection: comment.idUser === authState.user.id ? "row-reverse" : "row",
-                  alignItems: "center",
-                  mb: 1,
-                }}
-              >
+            {comments.length > 0 ? (
+              comments.map((comment) => (
                 <Box
+                  key={comment.id}
                   sx={{
-                    bgcolor: comment.idUser === authState.user.id ? "#4CAF50" : "#333",
-                    color: "white",
-                    borderRadius: "10px",
-                    p: 1,
-                    ml: comment.idUser === authState.user.id ? 0 : 2,
-                    mr: comment.idUser === authState.user.id ? 2 : 0,
+                    display: "flex",
+                    flexDirection:
+                      comment.idUser === authState.user.id
+                        ? "row-reverse"
+                        : "row",
+                    alignItems: "center",
+                    mb: 1,
                   }}
                 >
-                  <Typography
+                  <Box
                     sx={{
-                      fontWeight: "bold",
+                      bgcolor:
+                        comment.idUser === authState.user.id
+                          ? "#4CAF50"
+                          : "#333",
+                      color: "white",
+                      borderRadius: "10px",
+                      p: 1,
+                      ml:
+                        comment.idUser === authState.user.id ? 0 : 2,
+                      mr:
+                        comment.idUser === authState.user.id ? 2 : 0,
                     }}
                   >
-                    {`${comment.user.nombreApellido}:`}
-                  </Typography>
-                  <Typography>{comment.comentario}</Typography>
-                </Box>
-                {comment.idUser === authState.user.id && (
-                  <Box>
-                    <Button
-                      id={comment.idUser}
-                      onClick={handleDeleteComment}
+                    <Typography
+                      sx={{
+                        fontWeight: "bold",
+                      }}
                     >
-                      <Delete />
-                    </Button>
+                      {`${comment.user.nombreApellido}:`}
+                    </Typography>
+                    <Typography>{comment.comentario}</Typography>
                   </Box>
-                )}
-              </Box>
-            ))}
+                  {comment.idUser === authState.user.id && (
+                    <Box>
+                      <IconButton
+                        id={comment.id}
+                        onClick={() => handleDeleteComment(comment.id)}
+                      >
+                        <Delete />
+                      </IconButton>
+                    </Box>
+                  )}
+                </Box>
+              ))
+            ) : (
+              <Typography>No hay comentarios</Typography>
+            )}
           </Box>
           <Box mt={2}>
             <Container

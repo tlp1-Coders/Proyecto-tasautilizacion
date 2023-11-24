@@ -92,6 +92,9 @@ export const deleteComment = async (id, idUser) => {
             return false;
         }
         const deletedComment = await existingComment.destroy();
+        if (!deletedComment) {
+            return false;
+        }
         return deletedComment;
     } catch (error) {
         console.log(error);

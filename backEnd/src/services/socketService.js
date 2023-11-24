@@ -15,6 +15,7 @@ export const socketService = (server) => {
         socket.on('disconnect', () => {
             console.log('Usuario desconectado');
         });
+        
         //Traer todos los comentarios
         socket.on('allComments', async() => {
             try {
@@ -23,7 +24,7 @@ export const socketService = (server) => {
                     socket.emit('error', 'Comentarios no encontrados');
                     return;
                 }
-                socket.emit('allComments', allComments);
+                io.emit('allComments', allComments);
             } catch (error) {
                 console.log(error);
                 socket.emit('error', 'No se pudo obtener los comentarios, error de servidor');
@@ -67,7 +68,7 @@ export const socketService = (server) => {
                 socket.emit('error', 'No se pudo actualizar el comentario');
                 return;
             }
-            socket.emit('comment', updatedComment);
+            io.emit('comment', updatedComment);
         } catch (error) {
             console.log(error);
             socket.emit('error', 'No se pudo actualizar el comentario, error de servidor');
@@ -81,7 +82,7 @@ export const socketService = (server) => {
                 socket.emit('error', 'No se pudo eliminar el comentario');
                 return;
             }
-            socket.emit('comment', deletedComment);
+            socket.broadcast.emit('deleteComment', deletedComment);
         } catch (error) {
             console.log(error);
             socket.emit('error', 'No se pudo eliminar el comentario, error de servidor');
