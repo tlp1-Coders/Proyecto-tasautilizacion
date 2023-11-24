@@ -30,47 +30,7 @@ export const UpdatePasswordPage = () => {
   };
   const defaultTheme = createTheme();
   return (
-    <main className="container text-center d-flex flex-column justify-content-center align-items-center mt-5">
-      {/* <form 
-                onSubmit={handleSubmit(onsubmit)}
-                className="row bg-body-tertiary g-3 border rounded mt-1 p-5  w-50 needs-validation shadow justify-content-center align-items-center">
-                    <h1>Recuperar contraseña</h1>
-                    <div className="col-12 w-50">
-                        <label htmlFor="password" className="form-label">
-                            Nueva Contraseña
-                        </label>
-                        <input
-                            type="password"
-                            className="form-control rounded-5"
-                            name="password"
-                            id="password"
-                            required=""
-                            {...register('password')}
-                        />
-                    </div>
-                    <div className="col-12 w-50">
-                        <label htmlFor="RepetirNuevaContraseña" className="form-label">
-                            Repetir Nueva Contraseña
-                        </label>
-                        <input
-                            type="text"
-                            className="form-control  rounded-5"
-                            name="RepetirNuevaContraseña"
-                            id="RepetirNuevaContraseña"
-                            required=""
-                            {...register('RepetirNuevaContraseña')}
-                        />
-                    </div>
-                    <div className="col-12 w-75 ">
-                        <button
-                            type="submit"
-                            id="btnSubmit"
-                            className="form-control  btn btn-primary  rounded-5"
-                        >
-                            Recuperar contraseña
-                        </button>
-                    </div>
-                </form> */}
+    <Container component="main" className="container text-center d-flex flex-column justify-content-center align-items-center mt-5">
       <ThemeProvider theme={defaultTheme}>
         <Container
           component="section"
@@ -144,6 +104,6 @@ export const UpdatePasswordPage = () => {
           </Box>
         </Container>
       </ThemeProvider>
-    </main>
+    </Container>
   );
 };

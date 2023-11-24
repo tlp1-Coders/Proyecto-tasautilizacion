@@ -23,47 +23,7 @@ export const PasswordPage = () => {
        await sendPasswordResetRequest(valor);
   };
   return (
-    <main className="container text-center d-flex flex-column justify-content-center align-items-center mt-5">
-      {/* <form 
-                onSubmit={handleSubmit(onsubmit)}
-                className="row bg-body-tertiary g-3 border rounded mt-1 p-5  w-50 needs-validation shadow justify-content-center align-items-center">
-                    <h1>Recuperar contraseña</h1>
-                    <div className="col-12 w-50">
-                        <label htmlFor="email" className="form-label">
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            className="form-control rounded-5"
-                            name="email"
-                            id="email"
-                            required=""
-                            {...register('email')}
-                        />
-                    </div>
-                    <div className="col-12 w-50">
-                        <label htmlFor="dni" className="form-label">
-                            DNI
-                        </label>
-                        <input
-                            type="text"
-                            className="form-control  rounded-5"
-                            name="dni"
-                            id="dni"
-                            required=""
-                            {...register('dni')}
-                        />
-                    </div>
-                    <div className="col-12 w-75 ">
-                        <button
-                            type="submit"
-                            id="btnSubmit"
-                            className="form-control  btn btn-primary  rounded-5"
-                        >
-                            Recuperar contraseña
-                        </button>
-                    </div>
-                </form> */}
+    <Container component="main" className="container text-center d-flex flex-column justify-content-center align-items-center mt-5">
       <ThemeProvider theme={defaultTheme}>
         <Container
           component="section"
@@ -141,6 +101,6 @@ export const PasswordPage = () => {
           </Box>
         </Container>
       </ThemeProvider>
-    </main>
+    </Container>
   );
 };

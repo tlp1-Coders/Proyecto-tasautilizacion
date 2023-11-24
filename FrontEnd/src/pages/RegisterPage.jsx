@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { RegisterForm } from '../components/RegisterForm';
 import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Container } from '@mui/material';
 
 export const RegisterPage = () => {
     const navigate = useNavigate();
@@ -14,11 +15,8 @@ export const RegisterPage = () => {
         }
     })
     return (
-        <>
-            <main className="container text-center d-flex flex-column justify-content-center align-items-center">
+            <Container component="main" className="container text-center d-flex flex-column justify-content-center align-items-center">
                 <RegisterForm onSubmit={onSubmit} register={register} errors={errors} getValues={getValues}/>
-            </main>
-
-        </>
+            </Container>
     )
 }
