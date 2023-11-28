@@ -9,7 +9,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
-
+import SendIcon from '@mui/icons-material/Send';
 const { EditIcon, DeleteIcon } = {
   EditIcon: Edit,
   DeleteIcon: Delete,
@@ -178,26 +178,30 @@ export const CommentsPages = () => {
               <Typography>No hay comentarios</Typography>
             )}
           </Box>
+          <Divider />
           <Box mt={2}>
             <Container
               component="form"
               onSubmit={handleSubmit(handleAddComment)}
+              sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
             >
               <TextField
                 label="Agregar comentario"
-                {...register("comment")}
+                {...register("comment", { required: true })}
                 fullWidth
                 variant="outlined"
                 size="small"
+                sx={{ mr:1 }}
               />
               <Button
                 type="submit"
-                variant="contained"
-                color="primary"
+                variant="outlined"
                 mt={3}
-                fullWidth
+                sx={{ height: "40px"   }}
+
+                
               >
-                Agregar
+                <SendIcon />
               </Button>
             </Container>
           </Box>

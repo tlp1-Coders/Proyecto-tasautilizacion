@@ -30,7 +30,7 @@ function App() {
         <Route path="/ingresar" element={<LoginPage />} />
         <Route path="/registro" element={<RegisterPage />} />
         <Route path="/forgotPassword" element={<PasswordPage />} />
-        <Route path="/updatePassword" element={<UpdatePasswordPage />} />4
+        <Route path="/updatePassword" element={<UpdatePasswordPage />} />
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/comentarios" element={<CommentsPages />} />
           <Route path="/cambiarContraseña" element={<UpdatePasswordPage />} />
