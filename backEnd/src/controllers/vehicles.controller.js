@@ -19,7 +19,8 @@ export const getVehicle = async (req, res) => {
 
 export const NotUserGetVehicle = async (req, res) => {
     try {
-        const vehicle= await getVehicleNotUser(req.body.valor);   
+
+        const vehicle= await getVehicleNotUser((req.body.valor).toUpperCase());   
         if (!vehicle){
             return res.status(404).json({
                 message: 'No se encontro el vehiculo',
